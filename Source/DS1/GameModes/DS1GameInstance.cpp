@@ -36,8 +36,6 @@ void UDS1GameInstance::ShowStartWidget()
 	if (StartWidget)
 	{
 		StartWidget->AddToViewport();
-
-		
 		
 		if (APlayerController* PC = GetWorld()->GetFirstPlayerController())
 		{
