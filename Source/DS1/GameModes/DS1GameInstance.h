@@ -6,6 +6,7 @@
 #include "Engine/GameInstance.h"
 #include "DS1GameInstance.generated.h"
 
+class UDS1PlayerHUDWidget;
 class UDS1StartMenuWidget;
 /**
  * 
@@ -16,8 +17,15 @@ class DS1_API UDS1GameInstance : public UGameInstance
 	GENERATED_BODY()
 
 public:
-	virtual void Init() override;
-	void ShowStartWidget();
+	// virtual void Init() override;
+	void MakeAndShowStartWidget();
+	// FORCEINLINE UDS1PlayerHUDWidget* GetPlayerHUDWidget(){return PlayerHUDWidget;}
+	//
+	// FORCEINLINE bool GetbCurrentStartMenu(){return bCurrentStartMenu;}
+	// FORCEINLINE void SetbCurrentStartMenu(bool InBool){bCurrentStartMenu=InBool;}
+	//
+private:
+	// bool bCurrentStartMenu = true;
 
 protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Start Menu Widget")
@@ -25,4 +33,10 @@ protected:
 	
 	UPROPERTY()
 	UDS1StartMenuWidget* StartWidget;
+	
+	// UPROPERTY(EditAnywhere, Category="HUD")
+	// TSubclassOf<UUserWidget> PlayerHUDWidgetClass;
+	//
+	// UPROPERTY()
+	// UDS1PlayerHUDWidget* PlayerHUDWidget;
 };

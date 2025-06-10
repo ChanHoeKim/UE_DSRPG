@@ -119,7 +119,7 @@ protected:
 	USkeletalMeshComponent* FeetMesh;
 
 
-// UI Section
+// UI
 protected:
 	UPROPERTY(EditAnywhere, Category="UI")
 	TSubclassOf<UUserWidget> PlayerHUDWidgetClass;
@@ -132,7 +132,7 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TSubclassOf<ADS1FistWeapon> FistWeaponClass;
 
-// Effect
+// (사운트, 타격) 효과
 protected:
 	UPROPERTY(EditAnywhere, Category="Effect")
 	USoundCue* ImpactSound;
@@ -147,36 +147,37 @@ protected:
 	UParticleSystem* BlockingParticle;
 
 protected:
-	/** 질주 속도 */
+	// 질주 걸음 속도
 	UPROPERTY(EditAnywhere, Category="Movement Speed")
-	float SprintingSpeed = 750.f;
+	float SprintingWalkSpeed = 750.f;
 
-	/** 일반 속도 */
+	// 일반 걸음 속도
 	UPROPERTY(EditAnywhere, Category = "Movement Speed")
-	float NormalSpeed = 500.f;
+	float NormalWalkSpeed = 500.f;
 
-	/** 방어자세 속도 */
+	// 방어자세 걸음 속도 
 	UPROPERTY(EditAnywhere, Category = "Movement Speed")
-	float BlockingSpeed = 250.f;
+	float BlockingWalkSpeed = 250.f;
 
+	// 달리기 중인지 체크
 	UPROPERTY(VisibleAnywhere, Category = "Movement Speed")
 	bool bSprinting = false;
 
 // Combo Section
 protected:
-	/** 콤보 시퀀스 진행중 */
-	bool bComboSequenceRunning = false;
+	// 콤보 시퀀스 진행중
+	// bool bComboSequenceRunning = false;
 
-	/** 콤보 입력 가능? */
+	// 콤보 입력 가능 체크
 	bool bCanComboInput = false;
 
-	/** 콤보 카운터 */
+	// 현재 콤보 카운트
 	int32 ComboCounter = 0;
 
-	/** 콤보 입력 여부 */
-	bool bSavedComboInput = false;
+	// 콤보 입력 여부 
+	//bool bSavedComboInput = false;
 
-	/** 콤보 리셋 타이머 핸들 */
+	// 콤보 리셋 타이머 핸들
 	FTimerHandle ComboResetTimerHandle;
 
 protected:
@@ -184,7 +185,7 @@ protected:
 	bool bFacingEnemy = false;
 
 	/** 무적프레임 활성화 여부 */
-	bool bEnabledIFrames = false;
+	bool bEnabledInvincibilityFrames = false;
 
 // Montage Section
 protected:
@@ -209,8 +210,6 @@ public:
 
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
-	virtual void OnConstruction(const FTransform& Transform) override;
-	
 public:
 	FORCEINLINE UDS1StateComponent* GetStateComponent() const { return StateComponent; };
 	bool IsDeath() const;
@@ -230,78 +229,91 @@ protected:
 	bool IsMoving() const;
 	bool CanToggleCombat() const;
 	FORCEINLINE bool IsSprinting() const { return bSprinting; }
-	FORCEINLINE bool CanReceiveDamage() const { return !bEnabledIFrames; }
+	FORCEINLINE bool CanReceiveDamage() const { return !bEnabledInvincibilityFrames; }
 
-	/** 이동 */
+	/* 이동 */
 	void Move(const FInputActionValue& Values);
-	/** 카메라 방향 */
+	
+	/* 카메라 회전 */
 	void Look(const FInputActionValue& Values);
-	/** 질주 */
+	
+	/* 질주 */
 	void Sprinting();
-	/** 질주 중단 */
+	
+	/* 질주 중단 */
 	void StopSprint();
-	/** 구르기 */
+	
+	/* 구르기 */
 	void Rolling();
-	/** 인터렉션 */
+	
+	/* 상호작용(무기 줍기) */
 	void Interact();
-	/** 전투상태 전환 */
+	
+	/* 전투상태 전환 */
 	void ToggleCombat();
 	void AutoToggleCombat();
-	/** Attack */
+	
+	/* 공격 */
 	void Attack();
 	void SpecialAttack();
 	void HeavyAttack();
-	/** LockedOn */
+	
+	/* 락온 */
 	void LockOnTarget();
 	void LeftTarget();
 	void RightTarget();
-	/** 방어 자세 */
+	
+	/* 방어 */
 	void Blocking();
 	void BlockingEnd();
-	/** 패링 */
+	
+	/* 패링 */
 	void Parrying();
-	/** 포션 마시기 */
+	
+	/* 포션 마시기 */
 	void Consume();
 
 protected:
-	/** 현재 상태에서 수행 가능한 일반공격 */
+	/* 첫 공격 타입 반환 */
 	FGameplayTag GetAttackPerform() const;
 
-	/** 공격 가능 조건 체크 */
+	/* 공격 가능 조건 체크 */
 	bool CanPerformAttack(const FGameplayTag& AttackTypeTag) const;
-	/** 공격 실행 */
+	/* 공격 실행 */
 	void DoAttack(const FGameplayTag& AttackTypeTag);
-	/** 콤보 실행 */
+	/* 콤보 실행 */
 	void ExecuteComboAttack(const FGameplayTag& AttackTypeTag);
-	/** 콤보 초기화 */
+	/* 콤보 초기화 */
 	void ResetCombo();
 
-	/** 방어 자세 가능 여부 */
+	/* 방어 자세 가능 여부 */
 	bool CanPlayerBlockStance() const;
 
-	/** 방패 막기 방어가 가능한지? */
+	/* 방패 막기 가능 여부 */
 	bool CanPerformAttackBlocking() const;
 
-	/** 패링이 가능한지? */
+	/* 패링 가능 여부 */
 	bool CanPerformParry() const;
 
-	/** 패링 성공 여부 */
+	/* 패링 성공 여부 */
 	bool ParriedAttackSucceed() const;
 
-	/** 포션을 마실수 있는지?*/
+	/* 포션 소비(체력 회복) 가능 여부 */
 	bool CanDrinkPotion()const;
 
-	/** 포션 마시기 중단 */
+	/* 포션 마시기 중단 */
 	void InterruptWhileDrinkingPotion() const;
 
-// Combo AnimNotify Section
+// 콤보 AnimNotify 관련
 public:
 	void EnableComboWindow();
 	void DisableComboWindow();
 	void AttackFinished(const float ComboResetDelay);
 
+	
 public:
 	virtual void ActivateWeaponCollision(EWeaponCollisionType WeaponCollisionType) override;
 	virtual void DeactivateWeaponCollision(EWeaponCollisionType WeaponCollisionType) override;
-	virtual void ToggleIFrames(const bool bEnabled) override;
+	virtual void ToggleInvincibilityFrames(const bool bEnabled) override;
+
 };

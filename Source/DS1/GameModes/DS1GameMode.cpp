@@ -20,7 +20,7 @@ void ADS1GameMode::BeginPlay()
 	{
 		if (UDS1GameInstance* GI = Cast<UDS1GameInstance>(GetGameInstance()))
 		{
-			GI->ShowStartWidget();
+			GI->MakeAndShowStartWidget();
 		}
 	}
 }

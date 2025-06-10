@@ -205,7 +205,7 @@ void ADS1Enemy::SetupHealthBar()
 	// 	}
 	// }
 
-	// 체력 초기값 설정.
+	//체력 초기값 설정.
 	if (AttributeComponent)
 	{
 		AttributeComponent->BroadcastAttributeChanged(EDS1AttributeType::Health);

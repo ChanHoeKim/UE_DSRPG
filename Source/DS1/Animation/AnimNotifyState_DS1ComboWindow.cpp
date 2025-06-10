@@ -14,19 +14,19 @@ void UAnimNotifyState_DS1ComboWindow::NotifyBegin(USkeletalMeshComponent* MeshCo
 {
 	Super::NotifyBegin(MeshComp, Animation, TotalDuration, EventReference);
 
-	if (ADS1Character* Character = Cast<ADS1Character>(MeshComp->GetOwner()))
-	{
-		Character->EnableComboWindow();
-	}
+	// if (ADS1Character* Character = Cast<ADS1Character>(MeshComp->GetOwner()))
+	// {
+	// 	Character->EnableComboWindow();
+	// }
 }
 
 void UAnimNotifyState_DS1ComboWindow::NotifyEnd(USkeletalMeshComponent* MeshComp, UAnimSequenceBase* Animation, const FAnimNotifyEventReference& EventReference)
 {
 	Super::NotifyEnd(MeshComp, Animation, EventReference);
 
-	if (ADS1Character* Character = Cast<ADS1Character>(MeshComp->GetOwner()))
-	{
-		Character->DisableComboWindow();
-	}
+	// if (ADS1Character* Character = Cast<ADS1Character>(MeshComp->GetOwner()))
+	// {
+	// 	Character->DisableComboWindow();
+	// }
 }
 

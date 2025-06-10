@@ -6,32 +6,33 @@
 #include "Blueprint/UserWidget.h"
 #include "UI/DS1StartMenuWidget.h"
 #include "Engine/World.h"
+#include "UI/DS1PlayerHUDWidget.h"
 
-void UDS1GameInstance::Init()
-{
-	Super::Init();
-	// FWorldDelegates::OnPostLoadMapWithWorld.AddUObject(this, &UDS1GameInstance::OnPostLoadMap);
-}
+// void UDS1GameInstance::Init()
+// {
+// 	Super::Init();
+// 	// FWorldDelegates::OnPostLoadMapWithWorld.AddUObject(this, &UDS1GameInstance::OnPostLoadMap);
+//
+// 	// Player HUD를 생성
+// 	// if (PlayerHUDWidgetClass)
+// 	// {
+// 	// 	PlayerHUDWidget = CreateWidget<UDS1PlayerHUDWidget>(GetWorld(), PlayerHUDWidgetClass);
+// 	// 	// if (PlayerHUDWidget)
+// 	// 	// {
+// 	// 	// 	UE_LOG(LogTemp, Log, TEXT("PlayerHUDWidgetClass 생성"));
+// 	// 	// 	PlayerHUDWidget->AddToViewport();
+// 	// 	// }
+// 	// }
+// }
 
-void UDS1GameInstance::ShowStartWidget()
+void UDS1GameInstance::MakeAndShowStartWidget()
 {
 	if (!StartWidgetClass)
 	{
 		// 이미 생성했으면 다시 생성하지 않음
 		return;
 	}
-	if (GEngine)
-	{
-		GEngine->AddOnScreenDebugMessage(
-			/* Key */ -1,                    // -1: 매번 새로운 메시지, 0 이상의 값은 덮어씀
-			/* Duration */ 5.0f,             // 지속 시간 (초)
-			/* Color */ FColor::Green,       // 출력 색상
-			/* Message */ TEXT("Hello!")     // 출력 문자열
-		);
-	}
-
-	UE_LOG(LogTemp, Log, TEXT("@@@@@@@@@@@@@@@@@"));
-
+	
 	StartWidget = CreateWidget<UDS1StartMenuWidget>(GetWorld(), StartWidgetClass);
 	if (StartWidget)
 	{

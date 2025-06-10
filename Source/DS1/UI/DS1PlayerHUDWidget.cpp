@@ -21,9 +21,10 @@ UDS1PlayerHUDWidget::UDS1PlayerHUDWidget(const FObjectInitializer& ObjectInitial
 void UDS1PlayerHUDWidget::NativeConstruct()
 {
 	Super::NativeConstruct();
-
-	if (APawn* OwningPawn = GetOwningPlayerPawn())
-	{
+	
+	if (APawn* OwningPawn = GetOwningPlayer()->GetPawn())
+	{ 
+		// UE_LOG(LogTemp, Log, TEXT("NativeConstruct"));
 		if (UDS1AttributeComponent* Attribute = OwningPawn->GetComponentByClass<UDS1AttributeComponent>())
 		{
 			Attribute->OnAttributeChanged.AddUObject(this, &ThisClass::OnAttributeChanged);
@@ -54,9 +55,9 @@ void UDS1PlayerHUDWidget::OnAttributeChanged(EDS1AttributeType AttributeType, fl
 		PlayerStat->SetHpRatio(InValue);
 		break;
 	case EDS1AttributeType::Stamina:
+		// UE_LOG(LogTemp, Log, TEXT("OnAttribute"));
 		PlayerStat->SetStaminaRatio(InValue);
 		break;
-	
 	}
 }
 

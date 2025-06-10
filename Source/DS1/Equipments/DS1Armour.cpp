@@ -51,6 +51,7 @@ void ADS1Armour::UnequipItem()
 		SkeletalMesh->SetLeaderPoseComponent(nullptr);
 	}
 
+	// 몸통 보여주기
 	SetBodyPartActive(true);
 
 	// 현재 Transform 정보를 유지하면서 떼어낸다.

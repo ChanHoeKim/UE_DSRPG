@@ -17,7 +17,7 @@ void UAnimNotifyState_DS1IFrames::NotifyBegin(USkeletalMeshComponent* MeshComp, 
 
 	if (IDS1CombatInterface* CombatInterface = Cast<IDS1CombatInterface>(OwnerActor))
 	{
-		CombatInterface->ToggleIFrames(true);
+		CombatInterface->ToggleInvincibilityFrames(true);
 	}
 }
 
@@ -31,7 +31,7 @@ void UAnimNotifyState_DS1IFrames::NotifyEnd(USkeletalMeshComponent* MeshComp, UA
 
 	if (IDS1CombatInterface* CombatInterface = Cast<IDS1CombatInterface>(OwnerActor))
 	{
-		CombatInterface->ToggleIFrames(false);
+		CombatInterface->ToggleInvincibilityFrames(false);
 	}
 
 	Super::NotifyEnd(MeshComp, Animation, EventReference);

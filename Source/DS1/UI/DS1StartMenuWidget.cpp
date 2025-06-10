@@ -3,6 +3,8 @@
 
 #include "UI/DS1StartMenuWidget.h"
 
+#include "DS1PlayerHUDWidget.h"
+#include "Characters/DS1Character.h"
 #include "Components/Button.h"
 #include "Kismet/GameplayStatics.h"
 
@@ -32,11 +34,19 @@ void UDS1StartMenuWidget::StartButtonClick()
 	GetWorld()->GetTimerManager().SetTimer(TimerHandle, [this]()
 	{
 		UGameplayStatics::OpenLevel(this, FName("DevMap"));
-
-		if (GEngine)
+		// 입력 모드 전환
+		if (APlayerController* PC = GetWorld()->GetFirstPlayerController())
 		{
-			GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("Hello, Debug World!"));
+			PC->SetInputMode(FInputModeGameOnly());
+			PC->bShowMouseCursor = false;
+			// ADS1Character* Character = Cast<ADS1Character>(PC->GetPawn());
+			// if (Character)
+			// {
+			// 	Character->SetIsViewPlayerHUD(true);
+			// }
+			
 		}
+		
 	}, 0.1f, false);
 	
 }

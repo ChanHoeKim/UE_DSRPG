@@ -15,11 +15,11 @@
 
 ADS1Weapon::ADS1Weapon()
 {
-	WeaponCollision = CreateDefaultSubobject<UDS1WeaponCollisionComponent>("MainCollision");
-	WeaponCollision->OnHitActor.AddUObject(this, &ThisClass::OnHitActor);
+	RightWeaponCollision = CreateDefaultSubobject<UDS1WeaponCollisionComponent>("MainCollision");
+	RightWeaponCollision->OnHitActor.AddUObject(this, &ThisClass::OnHitActor);
 
-	SecondWeaponCollision = CreateDefaultSubobject<UDS1WeaponCollisionComponent>("SecondCollision");
-	SecondWeaponCollision->OnHitActor.AddUObject(this, &ThisClass::OnHitActor);
+	LeftWeaponCollision = CreateDefaultSubobject<UDS1WeaponCollisionComponent>("SecondCollision");
+	LeftWeaponCollision->OnHitActor.AddUObject(this, &ThisClass::OnHitActor);
 
 	StaminaCostMap.Add(DS1GameplayTags::Character_Attack_Light, 7.f);
 	StaminaCostMap.Add(DS1GameplayTags::Character_Attack_Running, 12.f);
@@ -46,7 +46,7 @@ void ADS1Weapon::EquipItem()
 		AttachToOwner(AttachSocket);
 
 		// 무기의 충돌 트레이스 컴포넌트에 무기 메쉬 컴포넌트를 설정합니다.
-		WeaponCollision->SetWeaponMesh(Mesh);
+		RightWeaponCollision->SetWeaponMesh(Mesh);
 
 		// 장착한 무기의 CombatType으로 업데이트.
 		if (ACharacter* OwnerCharacter = Cast<ACharacter>(GetOwner()))
@@ -59,7 +59,7 @@ void ADS1Weapon::EquipItem()
 
 
 		// 무기를 소유한 OwnerActor를 충돌에서 무시합니다.
-		WeaponCollision->AddIgnoredActor(GetOwner());
+		RightWeaponCollision->AddIgnoredActor(GetOwner());
 
 		// 방패를 이미 가지고 있는지 체크해서 소켓의 위치를 잡아준다.
 		if (ADS1Shield* Shield = CombatComponent->GetShield())
@@ -203,10 +203,10 @@ void ADS1Weapon::ActivateCollision(EWeaponCollisionType InCollisionType)
 	switch (InCollisionType)
 	{
 	case EWeaponCollisionType::MainCollision:
-		WeaponCollision->TurnOnCollision();
+		RightWeaponCollision->TurnOnCollision();
 		break;
 	case EWeaponCollisionType::SecondCollision:
-		SecondWeaponCollision->TurnOnCollision();
+		LeftWeaponCollision->TurnOnCollision();
 		break;
 	}
 }
@@ -216,10 +216,10 @@ void ADS1Weapon::DeactivateCollision(EWeaponCollisionType InCollisionType)
 	switch (InCollisionType)
 	{
 	case EWeaponCollisionType::MainCollision:
-		WeaponCollision->TurnOffCollision();
+		RightWeaponCollision->TurnOffCollision();
 		break;
 	case EWeaponCollisionType::SecondCollision:
-		SecondWeaponCollision->TurnOffCollision();
+		LeftWeaponCollision->TurnOffCollision();
 		break;
 	}
 }

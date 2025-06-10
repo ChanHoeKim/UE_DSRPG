@@ -11,7 +11,7 @@
 
 UDS1CombatComponent::UDS1CombatComponent()
 {
-	PrimaryComponentTick.bCanEverTick = true;
+	//PrimaryComponentTick.bCanEverTick = true;
 
 }
 
@@ -31,8 +31,8 @@ void UDS1CombatComponent::TickComponent(float DeltaTime, ELevelTick TickType, FA
 
 void UDS1CombatComponent::SetWeapon(ADS1Weapon* NewWeapon)
 {
-    // 이미 무기를 가지고 있으면 PickupItem으로 만들어서 떨군다.
-    if (::IsValid(MainWeapon))
+    /* 이미 무기를 가지고 있으면 현재 가지고 무기를 스폰시키고, 착용하고 있는 것을 파괴 */
+    if (IsValid(MainWeapon))
     {
         if (const AActor* OwnerActor = GetOwner())
         {
@@ -42,8 +42,8 @@ void UDS1CombatComponent::SetWeapon(ADS1Weapon* NewWeapon)
         }
     }
 
+    /* 무기 착용 Delegate 실행 */
 	MainWeapon = NewWeapon;
-
     if (OnChangedWeapon.IsBound())
     {
         OnChangedWeapon.Broadcast();
@@ -54,7 +54,8 @@ void UDS1CombatComponent::SetArmour(ADS1Armour* NewArmour)
 {
     const EDS1ArmourType ArmourType = NewArmour->GetArmourType();
 
-    // 이미 같은 부위에 장착된 방어구가 있으면 PickupItem으로 떨군다.
+    /* 이미 같은 부위의 방어구를 가지고 있으면 현재 가지고 방어구를 스폰시키고,
+       착용하고 있는 것을 파괴 */
     if (ADS1Armour* EquippedArmourPart = GetArmour(ArmourType))
     {
 	    if (IsValid(EquippedArmourPart))

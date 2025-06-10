@@ -37,11 +37,11 @@ protected:
 // Component Section
 protected:
 	UPROPERTY(VisibleAnywhere)
-	UDS1WeaponCollisionComponent* WeaponCollision;
+	UDS1WeaponCollisionComponent* RightWeaponCollision;
 
 	UPROPERTY(VisibleAnywhere)
-	UDS1WeaponCollisionComponent* SecondWeaponCollision;
-
+	UDS1WeaponCollisionComponent* LeftWeaponCollision;
+	
 protected:
 	UPROPERTY()
 	UDS1CombatComponent* CombatComponent;
@@ -76,7 +76,7 @@ public:
 
 	FORCEINLINE FName GetEquipSocketName() const { return EquipSocketName; };
 	FORCEINLINE FName GetUnequipSocketName() const { return UnequipSocketName; };
-	FORCEINLINE UDS1WeaponCollisionComponent* GetCollision() const { return WeaponCollision; };
+	FORCEINLINE UDS1WeaponCollisionComponent* GetCollision() const { return RightWeaponCollision; };
 	FORCEINLINE ECombatType GetCombatType() const { return CombatType; };
 
 public:

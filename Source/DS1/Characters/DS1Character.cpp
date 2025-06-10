@@ -31,28 +31,33 @@ ADS1Character::ADS1Character()
 {
 	PrimaryActorTick.bCanEverTick = true;
 
+	/* 컨트롤러의 회전을 따라가지 않게 함 */
 	bUseControllerRotationPitch = false;
 	bUseControllerRotationYaw = false;
 	bUseControllerRotationRoll = false;
 
+	//움직임 방향과 캐릭터의 몸통 방향을 일치시킴
 	GetCharacterMovement()->bOrientRotationToMovement = true;
+	//움직임 방향과 몸통방향을 일치시킬 때 회전하는 속도
 	GetCharacterMovement()->RotationRate = FRotator(0.f, 500.f, 0.f);
 
-	/** 이동, 감속 속도 */
+	/* 이동, 감속 속도 */
 	GetCharacterMovement()->MaxWalkSpeed = 500.f;
 	GetCharacterMovement()->BrakingDecelerationWalking = 2000.f;
 
+	/*스프링 암 컴포넌트 부착 설정*/
 	CameraBoom = CreateDefaultSubobject<USpringArmComponent>(TEXT("CameraBoom"));
 	CameraBoom->SetupAttachment(RootComponent);
 	CameraBoom->TargetArmLength = 400.0f;
 	CameraBoom->SetRelativeRotation(FRotator(-30.f, 0.f, 0.f));
-	CameraBoom->bUsePawnControlRotation = true;
+	CameraBoom->bUsePawnControlRotation = true; //마우스를 움직이면 이동
 
-
+	/*카메라 컴포넌트 부착 설정*/
 	FollowCamera = CreateDefaultSubobject<UCameraComponent>(TEXT("FollowCamera"));
 	FollowCamera->SetupAttachment(CameraBoom);
 	FollowCamera->bUsePawnControlRotation = false;
 
+	/* 메타 휴먼 바디 설정 */
 	TorsoMesh = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("Torso"));
 	LegsMesh = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("Legs"));
 	FeetMesh = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("Feet"));
@@ -60,25 +65,46 @@ ADS1Character::ADS1Character()
 	LegsMesh->SetupAttachment(GetMesh());
 	FeetMesh->SetupAttachment(GetMesh());
 
+	/*캐릭터의 능력 및 상태 등을 체크 할 수 있도록 컴포넌트 설정 및 부착*/
 	AttributeComponent = CreateDefaultSubobject<UDS1AttributeComponent>(TEXT("Attribute"));
 	StateComponent = CreateDefaultSubobject<UDS1StateComponent>(TEXT("State"));
 	CombatComponent = CreateDefaultSubobject<UDS1CombatComponent>(TEXT("Combat"));
-	// LockedOn Targeting
 	TargetingComponent = CreateDefaultSubobject<UDS1TargetingComponent>(TEXT("Targeting"));
-
-	// OnDeath Delegate 함수 바인딩.
-	AttributeComponent->OnDeath.AddUObject(this, &ThisClass::OnDeath);
-
-	// 포션 인벤토리
 	PotionInventoryComponent = CreateDefaultSubobject<UDS1PotionInventoryComponent>(TEXT("PotionInventory"));
-
+	
+	// Character의 사망에 따른 상태 처리를 위해 함수 바인딩
+	AttributeComponent->OnDeath.AddUObject(this, &ThisClass::OnDeath);
 }
 
 void ADS1Character::BeginPlay()
 {
 	Super::BeginPlay();
 
-	
+	/* 시작 메뉴일 때에는 해당 처리를 하지 않도록 체크 */
+	const FString CurrentMap = GetWorld()->GetMapName();
+	if (!CurrentMap.Contains(TEXT("Start")))
+	{
+		/* Player HUD 생성 및 화면 표출 */
+		if (PlayerHUDWidgetClass)
+		{
+			PlayerHUDWidget = Cast<UDS1PlayerHUDWidget>(CreateWidget(GetWorld(), PlayerHUDWidgetClass));
+		
+			if (PlayerHUDWidget)
+			{
+				//UE_LOG(LogTemp, Log, TEXT("PlayerHUDWidgetClass 생성"));
+				PlayerHUDWidget->AddToViewport();
+			}
+		}
+		
+		/* 게임 시작 시 주먹 무기 장착 */
+		if (FistWeaponClass)
+		{
+			FActorSpawnParameters SpawnParams;
+			SpawnParams.Owner = this;
+			ADS1FistWeapon* FistWeapon = GetWorld()->SpawnActor<ADS1FistWeapon>(FistWeaponClass, GetActorTransform(), SpawnParams);
+			FistWeapon->EquipItem();
+		}
+	}
 }
 
 void ADS1Character::Tick(float DeltaTime)
@@ -86,6 +112,7 @@ void ADS1Character::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 }
 
+//Pawn의 Controller가 변경이 될 때 호출되는 함수
 void ADS1Character::NotifyControllerChanged()
 {
 	Super::NotifyControllerChanged();
@@ -94,45 +121,53 @@ void ADS1Character::NotifyControllerChanged()
 	{
 		if (UEnhancedInputLocalPlayerSubsystem* Subsystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(PC->GetLocalPlayer()))
 		{
+			//MappingContext 바인딩
 			Subsystem->AddMappingContext(DefaultMappingContext, 0);
 		}
 	}
 }
 
+// Controller가 Pawn 또는 Character에 빙의 할 때 호출되는 함수
+// 입력을 담당하는 함수를 바인딩하는 함수
 void ADS1Character::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
 	if (UEnhancedInputComponent* EnhancedInputComponent = Cast<UEnhancedInputComponent>(PlayerInputComponent))
 	{
+		// 움직임
 		EnhancedInputComponent->BindAction(MoveAction, ETriggerEvent::Triggered, this, &ThisClass::Move);
+
+		// 카메라
 		EnhancedInputComponent->BindAction(LookAction, ETriggerEvent::Triggered, this, &ThisClass::Look);
 
 		// 질주
 		EnhancedInputComponent->BindAction(SprintRollingAction, ETriggerEvent::Triggered, this, &ThisClass::Sprinting);
 		EnhancedInputComponent->BindAction(SprintRollingAction, ETriggerEvent::Completed, this, &ThisClass::StopSprint);
+
 		// 구르기
 		EnhancedInputComponent->BindAction(SprintRollingAction, ETriggerEvent::Canceled, this, &ThisClass::Rolling);
-		// 인터렉션
+
+		// 상호작용
 		EnhancedInputComponent->BindAction(InteractAction, ETriggerEvent::Started, this, &ThisClass::Interact);
+
 		// 전투 활성/비활성
 		EnhancedInputComponent->BindAction(ToggleCombatAction, ETriggerEvent::Started, this, &ThisClass::ToggleCombat);
 
-		// Combat 상태로 자동 전환.
+		// 전투 상태로 전환.
 		EnhancedInputComponent->BindAction(AttackAction, ETriggerEvent::Started, this, &ThisClass::AutoToggleCombat);
-		// 일반 공격
+
+		/* 공격 */
 		EnhancedInputComponent->BindAction(AttackAction, ETriggerEvent::Canceled, this, &ThisClass::Attack);
-		// 특수 공격
 		EnhancedInputComponent->BindAction(AttackAction, ETriggerEvent::Triggered, this, &ThisClass::SpecialAttack);
-		// HeavyAttack
 		EnhancedInputComponent->BindAction(HeavyAttackAction, ETriggerEvent::Started, this, &ThisClass::HeavyAttack);
 
-		// LockedOn
+		/* 락온 */
 		EnhancedInputComponent->BindAction(LockOnTargetAction, ETriggerEvent::Started, this, &ThisClass::LockOnTarget);
 		EnhancedInputComponent->BindAction(LeftTargetAction, ETriggerEvent::Started, this, &ThisClass::LeftTarget);
 		EnhancedInputComponent->BindAction(RightTargetAction, ETriggerEvent::Started, this, &ThisClass::RightTarget);
 
-		// 방어 자세
+		/* 방어 */ 
 		EnhancedInputComponent->BindAction(BlockAction, ETriggerEvent::Started, this, &ThisClass::Blocking);
 		EnhancedInputComponent->BindAction(BlockAction, ETriggerEvent::Completed, this, &ThisClass::BlockingEnd);
 
@@ -142,33 +177,9 @@ void ADS1Character::SetupPlayerInputComponent(UInputComponent* PlayerInputCompon
 		// 포션 마시기
 		EnhancedInputComponent->BindAction(ConsumeAction, ETriggerEvent::Started, this, &ThisClass::Consume);
 	}
-
 }
 
-void ADS1Character::OnConstruction(const FTransform& Transform)
-{
-	Super::OnConstruction(Transform);
-
-	// Player HUD를 생성
-	if (PlayerHUDWidgetClass)
-	{
-		PlayerHUDWidget = CreateWidget<UDS1PlayerHUDWidget>(GetWorld(), PlayerHUDWidgetClass);
-		if (PlayerHUDWidget)
-		{
-			PlayerHUDWidget->AddToViewport();
-		}
-	}
-
-	// 주먹 무기 장착
-	if (FistWeaponClass)
-	{
-		FActorSpawnParameters SpawnParams;
-		SpawnParams.Owner = this;
-		ADS1FistWeapon* FistWeapon = GetWorld()->SpawnActor<ADS1FistWeapon>(FistWeaponClass, GetActorTransform(), SpawnParams);
-		FistWeapon->EquipItem();
-	}
-}
-
+//죽음 상태인지 체크하는 함수
 bool ADS1Character::IsDeath() const
 {
 	check(StateComponent)
@@ -179,6 +190,7 @@ bool ADS1Character::IsDeath() const
 	return StateComponent->IsCurrentStateEqualToAny(CheckTags);
 }
 
+//캐릭터 몸통 활성화/비활성화 처리하는 함수
 void ADS1Character::SetBodyPartActive(const EDS1ArmourType ArmourType, const bool bActive) const
 {
 	switch (ArmourType) {
@@ -199,10 +211,14 @@ void ADS1Character::SetBodyPartActive(const EDS1ArmourType ArmourType, const boo
 	}
 }
 
+//Character가 데미지를 받을 때 호출되는 함수
+//ApplyDamage(ApplyPointDamage, ApplyRadialDamage) 함수의 Target이 호출하는 함수
 float ADS1Character::TakeDamage(float Damage, const FDamageEvent& DamageEvent, AController* EventInstigator, AActor* DamageCauser)
 {
+	//ApplyDamage() 함수를 통해 받은 처음 데미지 양
 	float  ActualDamage = Super::TakeDamage(Damage, DamageEvent, EventInstigator, DamageCauser);
 
+	
 	if (!CanReceiveDamage())
 	{
 		UE_LOG(LogTemp, Warning, TEXT("Rolling IFrames"));
@@ -237,7 +253,7 @@ float ADS1Character::TakeDamage(float Damage, const FDamageEvent& DamageEvent, A
 	}
 
 
-	// 방패 방어가 가능한지?
+	// 방어 가능 체크
 	if (CanPerformAttackBlocking())
 	{
 		AttributeComponent->TakeDamageAmount(0.f);
@@ -490,7 +506,7 @@ void ADS1Character::Sprinting()
 	{
 		AttributeComponent->ToggleStaminaRegeneration(false);
 
-		GetCharacterMovement()->MaxWalkSpeed = SprintingSpeed;
+		GetCharacterMovement()->MaxWalkSpeed = SprintingWalkSpeed;
 
 		AttributeComponent->DecreaseStamina(0.1f);
 
@@ -512,7 +528,7 @@ void ADS1Character::StopSprint()
 		return;
 	}
 
-	GetCharacterMovement()->MaxWalkSpeed = NormalSpeed;
+	GetCharacterMovement()->MaxWalkSpeed = NormalWalkSpeed;
 	AttributeComponent->ToggleStaminaRegeneration(true);
 	bSprinting = false;
 }
@@ -615,6 +631,7 @@ void ADS1Character::ToggleCombat()
 	}
 }
 
+//현재 Combat 상태가 아닌데 공격버튼(마우스 왼쪽) 클릭하는지 체크
 void ADS1Character::AutoToggleCombat()
 {
 	if (CombatComponent)
@@ -628,12 +645,55 @@ void ADS1Character::AutoToggleCombat()
 
 void ADS1Character::Attack()
 {
+	// 첫 번째 공격의 타입을 반환
 	const FGameplayTag AttackTypeTag = GetAttackPerform();
 
 	if (CanPerformAttack(AttackTypeTag))
 	{
 		ExecuteComboAttack(AttackTypeTag);
 	}
+}
+
+// 첫 번째 공격의 타입을 반환
+// 보통 공격, 달리기 공격
+FGameplayTag ADS1Character::GetAttackPerform() const
+{
+	if (IsSprinting())
+	{
+		return DS1GameplayTags::Character_Attack_Running;
+	}
+
+	return DS1GameplayTags::Character_Attack_Light;
+}
+
+//첫 공격 시작
+void ADS1Character::ExecuteComboAttack(const FGameplayTag& AttackTypeTag)
+{
+	//현재 공격상태가 아닐 때 = 첫 공격
+	if (StateComponent->GetCurrentState() != DS1GameplayTags::Character_State_Attacking)
+	{
+		//if (bComboSequenceRunning && bCanComboInput == false)
+		// if (bCanComboInput == false)
+		// {
+		// 	// 애니메이션은 끝났지만 아직 콤보 시퀀스가 유효할 때 - 추가 입력 기회
+		ComboCounter++;
+		// 	UE_LOG(LogTemp, Warning, TEXT("Additional input : Combo Counter = %d"), ComboCounter);
+		// }
+		// else
+		// {
+		// 	//UE_LOG(LogTemp, Warning, TEXT(">>> ComboSequence Started <<<"));
+		// 	ResetCombo();
+		// 	//bComboSequenceRunning = true;
+		// }
+
+		DoAttack(AttackTypeTag);
+		GetWorld()->GetTimerManager().ClearTimer(ComboResetTimerHandle);
+	}
+	// else if (bCanComboInput)
+	// {
+	// 	// 콤보 윈도우가 열려 있을 때 - 최적의 타이밍
+	// 	bSavedComboInput = true;
+	// }
 }
 
 void ADS1Character::SpecialAttack()
@@ -682,7 +742,7 @@ void ADS1Character::Blocking()
 	{
 		if (CanPlayerBlockStance())
 		{
-			GetCharacterMovement()->MaxWalkSpeed = BlockingSpeed;
+			GetCharacterMovement()->MaxWalkSpeed = BlockingWalkSpeed;
 			CombatComponent->SetBlockingEnabled(true);
 			if (UDS1AnimInstance* AnimInstance = Cast<UDS1AnimInstance>(GetMesh()->GetAnimInstance()))
 			{
@@ -704,7 +764,7 @@ void ADS1Character::BlockingEnd()
 		AnimInstance->UpdateBlocking(false);
 		StateComponent->ClearState();
 	}
-	GetCharacterMovement()->MaxWalkSpeed = NormalSpeed;
+	GetCharacterMovement()->MaxWalkSpeed = NormalWalkSpeed;
 }
 
 void ADS1Character::Parrying()
@@ -744,15 +804,6 @@ void ADS1Character::Consume()
 	}
 }
 
-FGameplayTag ADS1Character::GetAttackPerform() const
-{
-	if (IsSprinting())
-	{
-		return DS1GameplayTags::Character_Attack_Running;
-	}
-
-	return DS1GameplayTags::Character_Attack_Light;
-}
 
 void ADS1Character::DoAttack(const FGameplayTag& AttackTypeTag)
 {
@@ -769,9 +820,8 @@ void ADS1Character::DoAttack(const FGameplayTag& AttackTypeTag)
 		AttributeComponent->ToggleStaminaRegeneration(false);
 
 		UAnimMontage* Montage = Weapon->GetMontageForTag(AttackTypeTag, ComboCounter);
-		if (!Montage)
+		if (!Montage) // 해당 콤보 카운트에 맞는 Montage 없음 = 콤보 끝
 		{
-			// 콤보 한계 도달.
 			ComboCounter = 0;
 			Montage = Weapon->GetMontageForTag(AttackTypeTag, ComboCounter);
 		}
@@ -784,40 +834,15 @@ void ADS1Character::DoAttack(const FGameplayTag& AttackTypeTag)
 	}
 }
 
-void ADS1Character::ExecuteComboAttack(const FGameplayTag& AttackTypeTag)
-{
-	if (StateComponent->GetCurrentState() != DS1GameplayTags::Character_State_Attacking)
-	{
-		if (bComboSequenceRunning && bCanComboInput == false)
-		{
-			// 애니메이션은 끝났지만 아직 콤보 시퀀스가 유효할 때 - 추가 입력 기회
-			ComboCounter++;
-			UE_LOG(LogTemp, Warning, TEXT("Additional input : Combo Counter = %d"), ComboCounter);
-		}
-		else
-		{
-			UE_LOG(LogTemp, Warning, TEXT(">>> ComboSequence Started <<<"));
-			ResetCombo();
-			bComboSequenceRunning = true;
-		}
 
-		DoAttack(AttackTypeTag);
-		GetWorld()->GetTimerManager().ClearTimer(ComboResetTimerHandle);
-	}
-	else if (bCanComboInput)
-	{
-		// 콤보 윈도우가 열려 있을 때 - 최적의 타이밍
-		bSavedComboInput = true;
-	}
-}
 
 void ADS1Character::ResetCombo()
 {
 	UE_LOG(LogTemp, Warning, TEXT("Combo Reset"));
 
-	bComboSequenceRunning = false;
+	//bComboSequenceRunning = false;
 	bCanComboInput = false;
-	bSavedComboInput = false;
+	//bSavedComboInput = false;
 	ComboCounter = 0;
 }
 
@@ -931,27 +956,27 @@ void ADS1Character::InterruptWhileDrinkingPotion() const
 
 void ADS1Character::EnableComboWindow()
 {
-	bCanComboInput = true;
-	UE_LOG(LogTemp, Warning, TEXT("Combo Window Opened: Combo Counter = %d"), ComboCounter);
+	// bCanComboInput = true;
+	//UE_LOG(LogTemp, Warning, TEXT("Combo Window Opened: Combo Counter = %d"), ComboCounter);
 }
 
 void ADS1Character::DisableComboWindow()
 {
-	check(CombatComponent)
+	// check(CombatComponent)
+	//
+	// bCanComboInput = false;
 
-	bCanComboInput = false;
-
-	if (bSavedComboInput)
-	{
-		bSavedComboInput = false;
-		ComboCounter++;
-		UE_LOG(LogTemp, Warning, TEXT("Combo Window Closed: Advancing to next combo = %d"), ComboCounter);
-		DoAttack(CombatComponent->GetLastAttackType());
-	}
-	else
-	{
-		UE_LOG(LogTemp, Warning, TEXT("Combo Window Closed: No input received"));
-	}
+	// if (bSavedComboInput)
+	// {
+	// 	bSavedComboInput = false;
+	// 	ComboCounter++;
+	// 	UE_LOG(LogTemp, Warning, TEXT("Combo Window Closed: Advancing to next combo = %d"), ComboCounter);
+	// 	DoAttack(CombatComponent->GetLastAttackType());
+	// }
+	// else
+	// {
+	// 	//UE_LOG(LogTemp, Warning, TEXT("Combo Window Closed: No input received"));
+	// }
 }
 
 void ADS1Character::AttackFinished(const float ComboResetDelay)
@@ -981,8 +1006,8 @@ void ADS1Character::DeactivateWeaponCollision(EWeaponCollisionType WeaponCollisi
 	}
 }
 
-void ADS1Character::ToggleIFrames(const bool bEnabled)
+void ADS1Character::ToggleInvincibilityFrames(const bool bEnabled)
 {
-	bEnabledIFrames = bEnabled;
+	bEnabledInvincibilityFrames = bEnabled;
 }
 

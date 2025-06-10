@@ -33,5 +33,5 @@ public:
 
 	virtual void Parried() {}
 
-	virtual void ToggleIFrames(const bool bEnabled) {}
+	virtual void ToggleInvincibilityFrames(const bool bEnabled) {}
 };
