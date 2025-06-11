@@ -8,6 +8,9 @@
 #include "Interfaces/DS1CombatInterface.h"
 #include "DS1Character.generated.h"
 
+class UDS1EscWidget;
+class UDS1InputBlockingWidget;
+class UDS1GameInstance;
 class UDS1PotionInventoryComponent;
 class ADS1FistWeapon;
 class UDS1TargetingComponent;
@@ -85,6 +88,10 @@ private:
 	/** 포션마시기 */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
 	UInputAction* ConsumeAction;
+
+	/** ESC */
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
+	UInputAction* EscAction;
 
 private:
 	/** 캐릭터의 각종 스탯 관리 */
@@ -273,6 +280,16 @@ protected:
 	/* 포션 마시기 */
 	void Consume();
 
+	void Esc();
+	UPROPERTY()
+	UDS1GameInstance* GI;
+	UPROPERTY()
+	UDS1InputBlockingWidget* InputBlockingWidget;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Esc Widget")
+	TSubclassOf<UUserWidget> EscWidgetClass;
+	UPROPERTY()
+	UDS1EscWidget* EscWidget; 
+	
 protected:
 	/* 첫 공격 타입 반환 */
 	FGameplayTag GetAttackPerform() const;

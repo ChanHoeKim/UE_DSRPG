@@ -6,24 +6,41 @@
 #include "Blueprint/UserWidget.h"
 #include "UI/DS1StartMenuWidget.h"
 #include "Engine/World.h"
+#include "UI/DS1InputBlockingWidget.h"
+#include "UI/DS1OptionWidget.h"
 #include "UI/DS1PlayerHUDWidget.h"
 
-// void UDS1GameInstance::Init()
-// {
-// 	Super::Init();
-// 	// FWorldDelegates::OnPostLoadMapWithWorld.AddUObject(this, &UDS1GameInstance::OnPostLoadMap);
-//
-// 	// Player HUD를 생성
-// 	// if (PlayerHUDWidgetClass)
-// 	// {
-// 	// 	PlayerHUDWidget = CreateWidget<UDS1PlayerHUDWidget>(GetWorld(), PlayerHUDWidgetClass);
-// 	// 	// if (PlayerHUDWidget)
-// 	// 	// {
-// 	// 	// 	UE_LOG(LogTemp, Log, TEXT("PlayerHUDWidgetClass 생성"));
-// 	// 	// 	PlayerHUDWidget->AddToViewport();
-// 	// 	// }
-// 	// }
-// }
+void UDS1GameInstance::Init()
+{
+	Super::Init();
+	
+	// Player HUD를 생성
+	// if (PlayerHUDWidgetClass)
+	// {
+	// 	PlayerHUDWidget = CreateWidget<UDS1PlayerHUDWidget>(GetWorld(), PlayerHUDWidgetClass);
+	// 	// if (PlayerHUDWidget)
+	// 	// {
+	// 	// 	UE_LOG(LogTemp, Log, TEXT("PlayerHUDWidgetClass 생성"));
+	// 	// 	PlayerHUDWidget->AddToViewport();
+	// 	// }
+	// }
+	
+	if (OptionWidgetClass)
+	{
+		if (!OptionWidget)
+		{
+			OptionWidget = Cast<UDS1OptionWidget>(CreateWidget<UUserWidget>(GetWorld(), OptionWidgetClass));
+		}
+	}
+	
+	if (InputBlockingWidgetClass)
+	{
+		if (!InputBlockingWidget)
+		{
+			InputBlockingWidget = Cast<UDS1InputBlockingWidget>(CreateWidget<UUserWidget>(GetWorld(), InputBlockingWidgetClass));
+		}
+	}
+}
 
 void UDS1GameInstance::MakeAndShowStartWidget()
 {
@@ -41,9 +58,9 @@ void UDS1GameInstance::MakeAndShowStartWidget()
 		if (APlayerController* PC = GetWorld()->GetFirstPlayerController())
 		{
 			PC->bShowMouseCursor = true;
-			FInputModeUIOnly InputMode;
-			InputMode.SetWidgetToFocus(StartWidget->TakeWidget());
-			PC->SetInputMode(InputMode);
+			// FInputModeUIOnly InputMode;
+			// InputMode.SetWidgetToFocus(StartWidget->TakeWidget());
+			// PC->SetInputMode(InputMode);
 		}
 	}
 }

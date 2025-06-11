@@ -25,6 +25,7 @@
 #include "Kismet/KismetMathLibrary.h"
 #include "Kismet/KismetSystemLibrary.h"
 #include "Sound/SoundCue.h"
+#include "UI/DS1EscWidget.h"
 #include "UI/DS1PlayerHUDWidget.h"
 
 ADS1Character::ADS1Character()
@@ -74,6 +75,8 @@ ADS1Character::ADS1Character()
 	
 	// Character의 사망에 따른 상태 처리를 위해 함수 바인딩
 	AttributeComponent->OnDeath.AddUObject(this, &ThisClass::OnDeath);
+
+	
 }
 
 void ADS1Character::BeginPlay()
@@ -95,6 +98,12 @@ void ADS1Character::BeginPlay()
 				PlayerHUDWidget->AddToViewport();
 			}
 		}
+
+		if (EscWidgetClass)
+		{
+			EscWidget = Cast<UDS1EscWidget>(CreateWidget<UUserWidget>(GetWorld(),EscWidgetClass));
+			EscWidget->SetIsFocusable(true);
+		}
 		
 		/* 게임 시작 시 주먹 무기 장착 */
 		if (FistWeaponClass)
@@ -104,6 +113,7 @@ void ADS1Character::BeginPlay()
 			ADS1FistWeapon* FistWeapon = GetWorld()->SpawnActor<ADS1FistWeapon>(FistWeaponClass, GetActorTransform(), SpawnParams);
 			FistWeapon->EquipItem();
 		}
+		
 	}
 }
 
@@ -176,6 +186,33 @@ void ADS1Character::SetupPlayerInputComponent(UInputComponent* PlayerInputCompon
 
 		// 포션 마시기
 		EnhancedInputComponent->BindAction(ConsumeAction, ETriggerEvent::Started, this, &ThisClass::Consume);
+
+		// Esc
+		EnhancedInputComponent->BindAction(EscAction, ETriggerEvent::Triggered, this, &ThisClass::Esc);
+	}
+}
+
+void ADS1Character::Esc()
+{
+	
+	UGameplayStatics::SetGamePaused(GetWorld(), true);  // 게임 일시 정지
+
+	if (EscWidget)
+	{
+		EscWidget->AddToViewport(999);
+		
+		// UI 모드로 전환
+		if (APlayerController* PC = GetWorld()->GetFirstPlayerController())
+		{
+			PC->bShowMouseCursor = true;
+			
+			FInputModeUIOnly InputMode;
+			InputMode.SetLockMouseToViewportBehavior(EMouseLockMode::DoNotLock);
+
+			// 안전하게 위젯 포커스를 설정
+			InputMode.SetWidgetToFocus(EscWidget->GetCachedWidget());
+			PC->SetInputMode(InputMode);
+		}
 	}
 }
 
@@ -803,6 +840,8 @@ void ADS1Character::Consume()
 		PlayAnimMontage(DrinkingMontage);
 	}
 }
+
+
 
 
 void ADS1Character::DoAttack(const FGameplayTag& AttackTypeTag)

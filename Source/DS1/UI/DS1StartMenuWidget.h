@@ -6,6 +6,9 @@
 #include "Blueprint/UserWidget.h"
 #include "DS1StartMenuWidget.generated.h"
 
+class UDS1InputBlockingWidget;
+class UDS1GameInstance;
+class UDS1OptionWidget;
 class UButton;
 /**
  * 
@@ -27,6 +30,7 @@ protected:
 	UPROPERTY(meta=(BindWidget), BlueprintReadWrite)
 	UButton* Quit_Button;
 
+
 public:
 	UFUNCTION()
 	void StartButtonClick();
@@ -36,4 +40,14 @@ public:
 	
 	UFUNCTION()
 	void QuitButtonClick();
+
+private:
+	UPROPERTY()
+	UDS1GameInstance* GI;
+	
+	UPROPERTY()
+	UDS1OptionWidget* OptionWidget;
+
+	UPROPERTY()
+	UDS1InputBlockingWidget* InputBlockingWidget;
 };
