@@ -73,3 +73,7 @@ Plugins/**/Intermediate/*
 
 # Cache files for the editor to use
 DerivedDataCache/*
+
+# Map Asset(Asset size is too big)
+Content/_Assets/Maps/*
+Content/_Assets/Maps.zip
