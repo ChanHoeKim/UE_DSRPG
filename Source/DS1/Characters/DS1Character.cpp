@@ -194,9 +194,10 @@ void ADS1Character::SetupPlayerInputComponent(UInputComponent* PlayerInputCompon
 
 void ADS1Character::Esc()
 {
-	
-	UGameplayStatics::SetGamePaused(GetWorld(), true);  // 게임 일시 정지
+	// 게임 일시 정지
+	UGameplayStatics::SetGamePaused(GetWorld(), true);  
 
+	//Esc 위젯 화면 표출
 	if (EscWidget)
 	{
 		EscWidget->AddToViewport(999);
@@ -255,29 +256,33 @@ float ADS1Character::TakeDamage(float Damage, const FDamageEvent& DamageEvent, A
 	//ApplyDamage() 함수를 통해 받은 처음 데미지 양
 	float  ActualDamage = Super::TakeDamage(Damage, DamageEvent, EventInstigator, DamageCauser);
 
-	
-	if (!CanReceiveDamage())
+	//데미지 받을 타이밍에 구르기 상태인지 체크
+	if (IsInvincible())
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Rolling IFrames"));
-		return ActualDamage;
+		UE_LOG(LogTemp, Warning, TEXT("구르기 무적 타이밍"));
+		return 0.f;
 	}
 
-	check(AttributeComponent);
-	check(StateComponent);
+	check(AttributeComponent); // 속성(체력, 스테미너) 컴포넌트 있는지 체크
+	check(StateComponent);     // 전투 관련 컴포넌트 있는지 체크 
 
-	// 포션을 마시고 있으면 중단.
-	InterruptWhileDrinkingPotion();
+	// 포션 마시는 행동 중인지 체크 및 후조치
+	IsAttackedWhileDrinkingPotion();
 
-	// 적과 대치중인 방향인지?
+	// 가해자가 캐릭터의 정면에 있는지 체크
 	bFacingEnemy = UKismetMathLibrary::InRange_FloatFloat(GetDotProductTo(EventInstigator->GetPawn()), -0.1f, 1.f);
 
-	// 패링
+	
+	// 패링 시도를 했고, 패링 성공 조건에 맞는지 체크
 	if (ParriedAttackSucceed())
 	{
+		//가해자 Pawn이 WasParried() 함수를 구현했는지 체크
 		if (IDS1CombatInterface* CombatInterface = Cast<IDS1CombatInterface>(EventInstigator->GetPawn()))
 		{
-			CombatInterface->Parried();
+			//패링 당함
+			CombatInterface->WasParried();
 
+			// @Incomplete : 패링 판정 다시 확인
 			ADS1Weapon* MainWeapon = CombatComponent->GetMainWeapon();
 			if (IsValid(MainWeapon))
 			{
@@ -285,7 +290,6 @@ float ADS1Character::TakeDamage(float Damage, const FDamageEvent& DamageEvent, A
 				ShieldBlockingEffect(Location);
 			}
 		}
-
 		return ActualDamage;
 	}
 
@@ -293,20 +297,20 @@ float ADS1Character::TakeDamage(float Damage, const FDamageEvent& DamageEvent, A
 	// 방어 가능 체크
 	if (CanPerformAttackBlocking())
 	{
-		AttributeComponent->TakeDamageAmount(0.f);
-		// 스테미나 차감
-		AttributeComponent->DecreaseStamina(20.f);
-		StateComponent->SetState(DS1GameplayTags::Character_State_Blocking);
+		//AttributeComponent->TakeDamageAmount(0.f);
+		AttributeComponent->DecreaseStamina(20.f);// 스테미나 차감
+		StateComponent->SetState(DS1GameplayTags::Character_State_Blocking); //방어 성공 액션을 위해
 	}
 	else
 	{
-		AttributeComponent->TakeDamageAmount(ActualDamage);
-		StateComponent->SetState(DS1GameplayTags::Character_State_Hit);
+		AttributeComponent->TakeDamageAmount(ActualDamage); // 체력 차감
+		StateComponent->SetState(DS1GameplayTags::Character_State_Hit); // Hit 액션을 위해
 	}
 
 	// 움직이지 못하게 한다.
 	StateComponent->ToggleMovementInput(false);
 
+	//ApplyDamage를 줄 때 Point 형태로 주었는지 체크
 	if (DamageEvent.IsOfType(FPointDamageEvent::ClassID))
 	{
 		const FPointDamageEvent* PointDamageEvent = static_cast<const FPointDamageEvent*>(&DamageEvent);
@@ -320,6 +324,7 @@ float ADS1Character::TakeDamage(float Damage, const FDamageEvent& DamageEvent, A
 		// 히트한 객체의 Location (객체 중심 관점)
 		FVector HitLocation = PointDamageEvent->HitInfo.Location;
 
+		
 		ImpactEffect(ImpactPoint);
 
 		HitReaction(EventInstigator->GetPawn(), EDS1DamageType::HitBack);
@@ -442,7 +447,7 @@ bool ADS1Character::CanToggleCombat() const
 		return false;
 	}
 
-	if (CombatComponent->GetMainWeapon()->GetCombatType() == ECombatType::MeleeFists)
+	if (CombatComponent->GetMainWeapon()->GetCombatType() == EWeaponType::MeleeFists)
 	{
 		return false;
 	}
@@ -541,7 +546,7 @@ void ADS1Character::Sprinting()
 
 	if (AttributeComponent->CheckHasEnoughStamina(5.f) && IsMoving())
 	{
-		AttributeComponent->ToggleStaminaRegeneration(false);
+		AttributeComponent->ToggleRecoveryStamina(false);
 
 		GetCharacterMovement()->MaxWalkSpeed = SprintingWalkSpeed;
 
@@ -566,7 +571,7 @@ void ADS1Character::StopSprint()
 	}
 
 	GetCharacterMovement()->MaxWalkSpeed = NormalWalkSpeed;
-	AttributeComponent->ToggleStaminaRegeneration(true);
+	AttributeComponent->ToggleRecoveryStamina(true);
 	bSprinting = false;
 }
 
@@ -587,7 +592,7 @@ void ADS1Character::Rolling()
 	if (AttributeComponent->CheckHasEnoughStamina(15.f) && StateComponent->IsCurrentStateEqualToAny(CheckTags) == false)
 	{
 		// 스태미나 재충전 멈춤
-		AttributeComponent->ToggleStaminaRegeneration(false);
+		AttributeComponent->ToggleRecoveryStamina(false);
 
 		// 이동입력 처리 무시.
 		StateComponent->ToggleMovementInput(false);
@@ -601,7 +606,7 @@ void ADS1Character::Rolling()
 		StateComponent->SetState(DS1GameplayTags::Character_State_Rolling);
 
 		// 스태미나 재충전 시작
-		AttributeComponent->ToggleStaminaRegeneration(true, 1.5f);
+		AttributeComponent->ToggleRecoveryStamina(true, 1.5f);
 	}
 }
 
@@ -692,7 +697,7 @@ void ADS1Character::Attack()
 }
 
 // 첫 번째 공격의 타입을 반환
-// 보통 공격, 달리기 공격
+// (보통 공격, 달리기 공격)
 FGameplayTag ADS1Character::GetAttackPerform() const
 {
 	if (IsSprinting())
@@ -704,6 +709,7 @@ FGameplayTag ADS1Character::GetAttackPerform() const
 }
 
 //첫 공격 시작
+/* @Incomplete : 공격 타이밍 상세 설정 주석 처리(지금 안 씀) */
 void ADS1Character::ExecuteComboAttack(const FGameplayTag& AttackTypeTag)
 {
 	//현재 공격상태가 아닐 때 = 첫 공격
@@ -817,12 +823,12 @@ void ADS1Character::Parrying()
 			UAnimMontage* ParryingMontage = MainWeapon->GetMontageForTag(DS1GameplayTags::Character_State_Parrying);
 
 			StateComponent->ToggleMovementInput(false);
-			AttributeComponent->ToggleStaminaRegeneration(false);
+			AttributeComponent->ToggleRecoveryStamina(false);
 			AttributeComponent->DecreaseStamina(10.f);
 
 			PlayAnimMontage(ParryingMontage);
 
-			AttributeComponent->ToggleStaminaRegeneration(true, 1.5f);
+			AttributeComponent->ToggleRecoveryStamina(true, 1.5f);
 		}
 	}
 }
@@ -842,8 +848,6 @@ void ADS1Character::Consume()
 }
 
 
-
-
 void ADS1Character::DoAttack(const FGameplayTag& AttackTypeTag)
 {
 	check(StateComponent)
@@ -856,7 +860,7 @@ void ADS1Character::DoAttack(const FGameplayTag& AttackTypeTag)
 		StateComponent->ToggleMovementInput(false);
 		CombatComponent->SetLastAttackType(AttackTypeTag);
 
-		AttributeComponent->ToggleStaminaRegeneration(false);
+		AttributeComponent->ToggleRecoveryStamina(false);
 
 		UAnimMontage* Montage = Weapon->GetMontageForTag(AttackTypeTag, ComboCounter);
 		if (!Montage) // 해당 콤보 카운트에 맞는 Montage 없음 = 콤보 끝
@@ -869,7 +873,7 @@ void ADS1Character::DoAttack(const FGameplayTag& AttackTypeTag)
 
 		const float StaminaCost = Weapon->GetStaminaCost(AttackTypeTag);
 		AttributeComponent->DecreaseStamina(StaminaCost);
-		AttributeComponent->ToggleStaminaRegeneration(true, 1.5f);
+		AttributeComponent->ToggleRecoveryStamina(true, 1.5f);
 	}
 }
 
@@ -911,15 +915,17 @@ bool ADS1Character::CanPlayerBlockStance() const
 	CheckTags.AddTag(DS1GameplayTags::Character_State_Parrying);
 
 	return StateComponent->IsCurrentStateEqualToAny(CheckTags) == false &&
-		Weapon->GetCombatType() == ECombatType::SwordShield &&
+		Weapon->GetCombatType() == EWeaponType::SwordShield &&
 		AttributeComponent->CheckHasEnoughStamina(1.f);
 }
 
+//방패로 막을 수 있는 상황인지 체크
 bool ADS1Character::CanPerformAttackBlocking() const
 {
 	check(CombatComponent);
 	check(AttributeComponent);
 
+	// 적이 정면 && 막는 중인 상태 && 스테미너가 충분
 	return bFacingEnemy && CombatComponent->IsBlockingEnabled() && AttributeComponent->CheckHasEnoughStamina(20.f);
 }
 
@@ -946,10 +952,12 @@ bool ADS1Character::CanPerformParry() const
 	CheckTags.AddTag(DS1GameplayTags::Character_State_DrinkingPotion);
 
 	return StateComponent->IsCurrentStateEqualToAny(CheckTags) == false &&
-		MainWeapon->GetCombatType() == ECombatType::SwordShield &&
+		MainWeapon->GetCombatType() == EWeaponType::SwordShield &&
 		AttributeComponent->CheckHasEnoughStamina(1.f);
 }
 
+// 패링 시도를 했고, 패링에 성공
+// @Incomplete : 패링 타이밍 계산 아직 안 함 = 정면에 있으면 무조건 패링
 bool ADS1Character::ParriedAttackSucceed() const
 {
 	check(StateComponent);
@@ -977,28 +985,34 @@ bool ADS1Character::CanDrinkPotion() const
 	return PotionInventoryComponent->GetPotionQuantity() > 0 && StateComponent->IsCurrentStateEqualToAny(CheckTags) == false;
 }
 
-void ADS1Character::InterruptWhileDrinkingPotion() const
+void ADS1Character::IsAttackedWhileDrinkingPotion() const
 {
 	check(StateComponent);
-
+	
 	FGameplayTagContainer CheckTags;
 	CheckTags.AddTag(DS1GameplayTags::Character_State_DrinkingPotion);
 
+	//포션 마시는 상태인지 체크
 	if (StateComponent->IsCurrentStateEqualToAny(CheckTags))
 	{
 		if (PotionInventoryComponent)
 		{
+			//손에 부착된 포션 제거
 			PotionInventoryComponent->DespawnPotion();
 		}
 	}
 }
 
+// - Anim Notify에서 콤보 가능 부분을 체크하기 위한 함수
+// - 지금 사용 안함 (Timer로 대신 체크)
 void ADS1Character::EnableComboWindow()
 {
 	// bCanComboInput = true;
 	//UE_LOG(LogTemp, Warning, TEXT("Combo Window Opened: Combo Counter = %d"), ComboCounter);
 }
 
+// - Anim Notify에서 콤보 가능 부분을 체크하기 위한 함수
+// - 지금 사용 안함 (Timer로 대신 체크)
 void ADS1Character::DisableComboWindow()
 {
 	// check(CombatComponent)
@@ -1018,17 +1032,20 @@ void ADS1Character::DisableComboWindow()
 	// }
 }
 
+// 공격 종료 함수
 void ADS1Character::AttackFinished(const float ComboResetDelay)
 {
-	UE_LOG(LogTemp, Warning, TEXT("AttackFinished"));
+	//UE_LOG(LogTemp, Warning, TEXT("AttackFinished"));
 	if (StateComponent)
 	{
 		StateComponent->ToggleMovementInput(true);
 	}
-	// ComboResetDelay 후에 콤보 시퀀스 종료
+	
+	// ComboResetDelay 후에 다음 콤보 불가(다시 첫 공격부터 시작)
 	GetWorld()->GetTimerManager().SetTimer(ComboResetTimerHandle, this, &ThisClass::ResetCombo, ComboResetDelay, false);
 }
 
+// Weapon으로 타격하기 위해 Collision 활성화
 void ADS1Character::ActivateWeaponCollision(EWeaponCollisionType WeaponCollisionType)
 {
 	if (CombatComponent)
@@ -1037,6 +1054,7 @@ void ADS1Character::ActivateWeaponCollision(EWeaponCollisionType WeaponCollision
 	}
 }
 
+// Weapon 타격 후 Collision 비활성화 
 void ADS1Character::DeactivateWeaponCollision(EWeaponCollisionType WeaponCollisionType)
 {
 	if (CombatComponent)
@@ -1045,6 +1063,7 @@ void ADS1Character::DeactivateWeaponCollision(EWeaponCollisionType WeaponCollisi
 	}
 }
 
+// 무적 상태 활성화 / 비활성화
 void ADS1Character::ToggleInvincibilityFrames(const bool bEnabled)
 {
 	bEnabledInvincibilityFrames = bEnabled;

@@ -70,7 +70,7 @@ void UDS1AnimInstance::AnimNotify_ResetState()
     }
 }
 
-void UDS1AnimInstance::UpdateCombatMode(const ECombatType InCombatType)
+void UDS1AnimInstance::UpdateCombatMode(const EWeaponType InCombatType)
 {
     CombatType = InCombatType;
 }

@@ -22,8 +22,8 @@ void ADS1Shield::EquipItem()
 			const ADS1Weapon* MainWeapon = CombatComponent->GetMainWeapon();
 			if (IsValid(MainWeapon))
 			{
-				const ECombatType CombatType = MainWeapon->GetCombatType();
-				if (CombatType == ECombatType::SwordShield)
+				const EWeaponType CombatType = MainWeapon->GetCombatType();
+				if (CombatType == EWeaponType::SwordShield)
 				{
 					if (CombatComponent->IsCombatEnabled())
 					{

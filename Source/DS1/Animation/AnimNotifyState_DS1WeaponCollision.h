@@ -17,7 +17,7 @@ class DS1_API UAnimNotifyState_DS1WeaponCollision : public UAnimNotifyState
 
 protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	EWeaponCollisionType CollisionType = EWeaponCollisionType::MainCollision;
+	EWeaponCollisionType CollisionType = EWeaponCollisionType::RightWeaponCollision;
 
 public:
 	UAnimNotifyState_DS1WeaponCollision(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get());

@@ -16,40 +16,45 @@ class DS1_API UDS1WeaponCollisionComponent : public UActorComponent
 	GENERATED_BODY()
 
 public:
+	// Actor가 Hit 되었을 때 호출될 델리게이트
 	FOnHitActor OnHitActor;
 
+/* 무기 충돌 처리를 위해 Sphere Trace를 씌울 위치 지정 */
 protected:
+	/* 무기에 씌운 Sphere Trace의 시작 지점 소켓 */
 	UPROPERTY(EditAnywhere)
-	/** 시작 소켓 */
 	FName TraceStartSocketName;
 
-	/** 끝 소켓 */
+	/* 무기에 씌운 Sphere Trace의 끝 지점 소켓 */
 	UPROPERTY(EditAnywhere)
 	FName TraceEndSocketName;
 
 protected:
-	/** Sphere 크기(반지름) */
+	/* Sphere 크기(반지름) */
 	UPROPERTY(EditAnywhere)
 	float TraceRadius = 20.f;
 
-	/** Trace 대상 ObjectType */
+	/* 감지 대상 = 생성자에서 Pawn만 감지하도록 Add 처리 */
 	UPROPERTY(EditAnywhere)
 	TArray <TEnumAsByte<EObjectTypeQuery>> TraceObjectTypes;
 
-	/** 충돌처리 제외 Actors */
+	/* 충돌처리 제외 Actors */
 	UPROPERTY(EditAnywhere)
 	TArray<AActor*> IgnoredActors;
 
-	/** 디버그 드로우 타입 */
+	/* Collision(Sphere)이 화면에 표출되는 형태 */
+	// ForDuration = Sphere가 일정 시간동안 화면에 나옴(기본 5초)
 	UPROPERTY(EditAnywhere)
 	TEnumAsByte<EDrawDebugTrace::Type> DrawDebugType = EDrawDebugTrace::ForDuration;
 
 protected:
-	/** 무기의 MeshComponent */
+	/* 무기의 MeshComponent */
 	// StaticMesh, SkeletalMesh 등
 	UPROPERTY()
 	UPrimitiveComponent* WeaponMesh;
 
+	// Hit 처리한 Actor를 담는 변수
+	// 한 번 공격에 동일한 대상이 중복 Hit 되지 않기위한 변수
 	UPROPERTY()
 	TArray<AActor*> AlreadyHitActors;
 

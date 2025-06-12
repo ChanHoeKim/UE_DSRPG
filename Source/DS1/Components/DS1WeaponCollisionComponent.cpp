@@ -60,6 +60,7 @@ bool UDS1WeaponCollisionComponent::CanHitActor(AActor* Actor) const
 	return AlreadyHitActors.Contains(Actor) == false;
 }
 
+// Collision Trace 생성
 void UDS1WeaponCollisionComponent::CollisionTrace()
 {
     TArray<FHitResult> OutHits;
@@ -69,15 +70,16 @@ void UDS1WeaponCollisionComponent::CollisionTrace()
 
     bool const bHit = UKismetSystemLibrary::SphereTraceMultiForObjects(
         GetOwner(),
-        Start,
-        End,
-        TraceRadius,
-        TraceObjectTypes,
-        false,
-        IgnoredActors,
-        DrawDebugType,
-        OutHits,
-        true);
+        Start, // Sphere Trace의 시작 위치
+        End, //       "      의 끝 위치
+        TraceRadius, // 반지름
+        TraceObjectTypes, // 생성자에서 Pawn만 감지하도록 추가
+        false, // 복잡한 콜리전 미사용
+        IgnoredActors, // 무시할 액터
+        DrawDebugType, // 화면에 표출되는 방식
+        OutHits, //                       감지된 결과
+        true // 자신 무시할지 여부
+        );
 
     if (bHit)
     {
@@ -90,11 +92,11 @@ void UDS1WeaponCollisionComponent::CollisionTrace()
                 continue;
             }
 
+        	// 한 번 공격에 동일한 대상이 여러 번 Hit 되지 않도록 체크 
             if (CanHitActor(HitActor))
             {
                 AlreadyHitActors.Add(HitActor);
-
-                // Call OnHitActor Broadcast
+            	
                 if (OnHitActor.IsBound())
                 {
                     OnHitActor.Broadcast(Hit);

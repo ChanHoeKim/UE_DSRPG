@@ -15,27 +15,20 @@ UBTService_Strafe::UBTService_Strafe()
 	INIT_SERVICE_NODE_NOTIFY_FLAGS();
 }
 
+// BT Service가 실행될 때 호출되는 함수
 void UBTService_Strafe::OnBecomeRelevant(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory)
 {
 	Super::OnBecomeRelevant(OwnerComp, NodeMemory);
 
     AAIController* OwnerController = OwnerComp.GetAIOwner();
-    if (!OwnerController)
-    {
-        return;
-    }
-
     APawn* ControlledPawn = OwnerController->GetPawn();
-    if (!ControlledPawn)
-    {
-        return;
-    }
-
     const UBlackboardComponent* BlackBoardComp = OwnerComp.GetBlackboardComponent();
-    if (!BlackBoardComp)
+
+    if (!OwnerController || !ControlledPawn || !BlackBoardComp)
     {
         return;
     }
+    
 
     if (AActor* TargetActor = Cast<AActor>(BlackBoardComp->GetValueAsObject(TargetKey.SelectedKeyName)))
     {
@@ -56,16 +49,13 @@ void UBTService_Strafe::OnBecomeRelevant(UBehaviorTreeComponent& OwnerComp, uint
 void UBTService_Strafe::OnCeaseRelevant(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory)
 {
     AAIController* OwnerController = OwnerComp.GetAIOwner();
-    if (!OwnerController)
+    APawn* ControlledPawn = OwnerController->GetPawn();
+    
+    if (!OwnerController || !ControlledPawn)
     {
         return;
     }
 
-    APawn* ControlledPawn = OwnerController->GetPawn();
-    if (!ControlledPawn)
-    {
-        return;
-    }
 
     // 시선 고정해제.
     OwnerController->ClearFocus(EAIFocusPriority::Gameplay);

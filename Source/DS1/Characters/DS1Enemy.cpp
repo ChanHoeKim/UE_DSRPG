@@ -297,7 +297,7 @@ void ADS1Enemy::PerformAttack(FGameplayTag& AttackTypeTag, FOnMontageEnded& Mont
 	check(AttributeComponent);
 	check(CombatComponent);
 
-	// Tag 체크(스턴 상태)
+	// 스턴 상태인지 체크 = 스턴 상태면 공격 못 함
 	FGameplayTagContainer CheckTags;
 	CheckTags.AddTag(DS1GameplayTags::Character_State_Stunned);
 	if (StateComponent->IsCurrentStateEqualToAny(CheckTags))
@@ -305,12 +305,19 @@ void ADS1Enemy::PerformAttack(FGameplayTag& AttackTypeTag, FOnMontageEnded& Mont
 		return;
 	}
 
+	// 무기를 갖고 있으면
 	if (const ADS1Weapon* Weapon = CombatComponent->GetMainWeapon())
 	{
+		// 상태를 공격 중으로 변경
 		StateComponent->SetState(DS1GameplayTags::Character_State_Attacking);
-		CombatComponent->SetLastAttackType(AttackTypeTag);
-		AttributeComponent->ToggleStaminaRegeneration(false);
 
+		// 어떤 타입의 공격을 수행중인지 체크를 위해
+		CombatComponent->SetLastAttackType(AttackTypeTag);
+
+		// 스테미너 회복 중지
+		AttributeComponent->ToggleRecoveryStamina(false);
+
+		// 첫 번째 공격 타입에 맞는 
 		if (UAnimMontage* Montage = Weapon->GetRandomMontageForTag(AttackTypeTag))
 		{
 			if (UAnimInstance* AnimInstance = GetMesh()->GetAnimInstance())
@@ -322,11 +329,12 @@ void ADS1Enemy::PerformAttack(FGameplayTag& AttackTypeTag, FOnMontageEnded& Mont
 
 		const float StaminaCost = Weapon->GetStaminaCost(AttackTypeTag);
 		AttributeComponent->DecreaseStamina(StaminaCost);
-		AttributeComponent->ToggleStaminaRegeneration(true, 1.5f);
+		AttributeComponent->ToggleRecoveryStamina(true, 1.5f);
 	}
 }
 
-void ADS1Enemy::Parried()
+//패링 당할 때 실행
+void ADS1Enemy::WasParried()
 {
 	check(StateComponent);
 	check(CombatComponent);

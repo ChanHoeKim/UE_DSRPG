@@ -236,7 +236,8 @@ protected:
 	bool IsMoving() const;
 	bool CanToggleCombat() const;
 	FORCEINLINE bool IsSprinting() const { return bSprinting; }
-	FORCEINLINE bool CanReceiveDamage() const { return !bEnabledInvincibilityFrames; }
+	//무적 프레임이 활성화 되어 있으면, 데미지를 받을 수 없음
+	FORCEINLINE bool IsInvincible() const { return bEnabledInvincibilityFrames; }
 
 	/* 이동 */
 	void Move(const FInputActionValue& Values);
@@ -318,8 +319,8 @@ protected:
 	/* 포션 소비(체력 회복) 가능 여부 */
 	bool CanDrinkPotion()const;
 
-	/* 포션 마시기 중단 */
-	void InterruptWhileDrinkingPotion() const;
+	/* 포션 마실 때 공격 받음 = 포션 소비, 모션 취소 */
+	void IsAttackedWhileDrinkingPotion() const;
 
 // 콤보 AnimNotify 관련
 public:

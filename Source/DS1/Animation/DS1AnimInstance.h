@@ -45,7 +45,7 @@ protected:
 	bool bCombatEnabled = false;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Combat Data")
-	ECombatType CombatType = ECombatType::None;
+	EWeaponType CombatType = EWeaponType::None;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Combat Data")
 	bool bShouldBlocking = false;
@@ -65,7 +65,7 @@ public:
 
 // Animation
 public:
-	void UpdateCombatMode(const ECombatType InCombatType);
+	void UpdateCombatMode(const EWeaponType InCombatType);
 	void UpdateBlocking(bool InShouldBlocking);
 
 	// Delegate functions

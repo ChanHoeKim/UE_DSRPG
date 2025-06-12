@@ -39,18 +39,18 @@ void UDS1AttributeComponent::DecreaseStamina(float StaminaCost)
 	BroadcastAttributeChanged(EDS1AttributeType::Stamina);
 }
 
-void UDS1AttributeComponent::ToggleStaminaRegeneration(bool bEnabled, float StartDelay)
+void UDS1AttributeComponent::ToggleRecoveryStamina(bool bEnabled, float StartDelay)
 {
 	if (bEnabled)
 	{
-		if (GetWorld()->GetTimerManager().IsTimerActive(StaminaRegenTimerHandle) == false)
+		if (GetWorld()->GetTimerManager().IsTimerActive(RecoveryStaminaTimerHandle) == false)
 		{
-			GetWorld()->GetTimerManager().SetTimer(StaminaRegenTimerHandle, this, &ThisClass::RegenerateStaminaHandler, 0.1f, true, StartDelay);
+			GetWorld()->GetTimerManager().SetTimer(RecoveryStaminaTimerHandle, this, &ThisClass::RegenerateStaminaHandler, 0.1f, true, StartDelay);
 		}
 	}
 	else
 	{
-		GetWorld()->GetTimerManager().ClearTimer(StaminaRegenTimerHandle);
+		GetWorld()->GetTimerManager().ClearTimer(RecoveryStaminaTimerHandle);
 	}
 }
 
@@ -81,7 +81,7 @@ void UDS1AttributeComponent::TakeDamageAmount(float DamageAmount)
 	const float MaxDamage = DamageAmount * (DamageAmount / (DamageAmount + DefenseStat));
 	const float TotalDamage = FMath::Clamp(DamageAmount, 0, MaxDamage);
 
-	GEngine->AddOnScreenDebugMessage(6, 1.f, FColor::Red, FString::Printf(TEXT("DamageAmount:%f, TotalDamage: %f"), DamageAmount, TotalDamage));
+	//GEngine->AddOnScreenDebugMessage(6, 1.f, FColor::Red, FString::Printf(TEXT("DamageAmount:%f, TotalDamage: %f"), DamageAmount, TotalDamage));
 
 	// 체력 차감.
 	BaseHealth = FMath::Clamp(BaseHealth - TotalDamage, 0.f, MaxHealth);
@@ -118,7 +118,7 @@ void UDS1AttributeComponent::RegenerateStaminaHandler()
 
 	if (BaseStamina >= MaxStamina)
 	{
-		ToggleStaminaRegeneration(false);
+		ToggleRecoveryStamina(false);
 	}
 }
 

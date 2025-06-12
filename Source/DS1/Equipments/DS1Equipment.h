@@ -6,6 +6,7 @@
 #include "GameFramework/Actor.h"
 #include "DS1Equipment.generated.h"
 
+
 UCLASS()
 class DS1_API ADS1Equipment : public AActor
 {

@@ -81,7 +81,7 @@ void UDS1PlayerHUDWidget::OnWeaponChanged()
 			// 무기의 아이콘을 골라준다.
 			if (const ADS1Weapon* MainWeapon = CombatComponent->GetMainWeapon())
 			{
-				if (MainWeapon->GetCombatType() != ECombatType::MeleeFists)
+				if (MainWeapon->GetCombatType() != EWeaponType::MeleeFists)
 				{
 					// 무기 아이콘
 					WeaponIconTexture = MainWeapon->GetEquipmentIcon();

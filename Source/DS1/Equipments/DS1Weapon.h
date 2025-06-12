@@ -21,16 +21,19 @@ class DS1_API ADS1Weapon : public ADS1Equipment
 	GENERATED_BODY()
 
 protected:
+	//전투 소켓
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Equipment | Socket")
 	FName EquipSocketName;
 
+	//비전투 소켓
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Equipment | Socket")
 	FName UnequipSocketName;
 
-	// Combat Type
+	//무기 타입
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Equipment")
-	ECombatType CombatType = ECombatType::SwordShield;
+	EWeaponType WeaponType = EWeaponType::SwordShield;
 
+	//해당 무기 타입의 애님 몽타주 Data Asset
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Equipment | Animation")
 	UDS1MontageActionData* MontageActionData;
 
@@ -46,22 +49,21 @@ protected:
 	UPROPERTY()
 	UDS1CombatComponent* CombatComponent;
 
-// Data Section
+
 protected:
 	UPROPERTY(EditAnywhere)
 	TMap<FGameplayTag, float> StaminaCostMap;
 
-	/** 기본 데미지 */
+	/* 기본 데미지 */
 	UPROPERTY(EditAnywhere)
 	float BaseDamage = 15.f;
 
-	/** 데미지 승수 */
+	/* 무기별 데미지 승수 */
 	UPROPERTY(EditAnywhere)
 	TMap<FGameplayTag, float> DamageMultiplierMap;
 
 public:
 	ADS1Weapon();
-
 
 public:
 	virtual void EquipItem() override;
@@ -77,14 +79,14 @@ public:
 	FORCEINLINE FName GetEquipSocketName() const { return EquipSocketName; };
 	FORCEINLINE FName GetUnequipSocketName() const { return UnequipSocketName; };
 	FORCEINLINE UDS1WeaponCollisionComponent* GetCollision() const { return RightWeaponCollision; };
-	FORCEINLINE ECombatType GetCombatType() const { return CombatType; };
+	FORCEINLINE EWeaponType GetCombatType() const { return WeaponType; };
 
 public:
 	virtual void ActivateCollision(EWeaponCollisionType InCollisionType);
 	virtual void DeactivateCollision(EWeaponCollisionType InCollisionType);
 
 public:
-	/** 무기의 Collision에 검출된 Actor에 Damage를 전달 */
+	/* 무기의 Collision에 충돌한 Actor에게 Damage를 전달 */
 	void OnHitActor(const FHitResult& Hit);
 };
 

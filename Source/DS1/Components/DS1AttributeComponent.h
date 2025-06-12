@@ -42,7 +42,7 @@ protected:
 	float DefenseStat = 0.f;
 
 	/** 스태미나 재충전 타이머 핸들 */
-	FTimerHandle StaminaRegenTimerHandle;
+	FTimerHandle RecoveryStaminaTimerHandle;
 
 public:	
 	UDS1AttributeComponent();
@@ -80,7 +80,7 @@ public:
 	void DecreaseStamina(float StaminaCost);
 
 	/** 스테미너 재충전/중지 토글 */
-	void ToggleStaminaRegeneration(bool bEnabled, float StartDelay = 2.f);
+	void ToggleRecoveryStamina(bool bEnabled, float StartDelay = 2.f);
 
 	/** 스텟 변경을 통지하는 Broadcast Function */
 	void BroadcastAttributeChanged(EDS1AttributeType InAttributeType) const;

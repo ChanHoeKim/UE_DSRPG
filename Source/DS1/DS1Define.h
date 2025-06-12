@@ -5,6 +5,7 @@
 #define COLLISION_OBJECT_INTERACTION ECC_GameTraceChannel1
 #define COLLISION_OBJECT_TARGETING ECC_GameTraceChannel2
 
+//스테미너, 체력 어느 속성이 바뀌는지 타입 지정
 UENUM(BlueprintType)
 enum class EDS1AttributeType : uint8
 {
@@ -12,6 +13,7 @@ enum class EDS1AttributeType : uint8
 	Health,
 };
 
+//Hit 받은 방향 지정
 UENUM(BlueprintType)
 enum class EHitDirection : uint8
 {
@@ -21,6 +23,7 @@ enum class EHitDirection : uint8
     Right,
 };
 
+//락온 대상 변경 방향
 UENUM(BlueprintType)
 enum class ESwitchingDirection : uint8
 {
@@ -29,9 +32,9 @@ enum class ESwitchingDirection : uint8
     Right,
 };
 
-
+//무기 타입
 UENUM(BlueprintType)
-enum class ECombatType : uint8
+enum class EWeaponType : uint8
 {
     None,
     SwordShield,
@@ -39,11 +42,12 @@ enum class ECombatType : uint8
     MeleeFists
 };
 
+//무기 Collision 
 UENUM(BlueprintType)
 enum class EWeaponCollisionType : uint8
 {
-    MainCollision,
-    SecondCollision,
+    RightWeaponCollision,
+    LeftWeaponCollision,
 };
 
 UENUM(BlueprintType)

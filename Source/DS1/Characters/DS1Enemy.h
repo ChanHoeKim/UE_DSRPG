@@ -107,7 +107,7 @@ public:
 	virtual void ActivateWeaponCollision(EWeaponCollisionType WeaponCollisionType) override;
 	virtual void DeactivateWeaponCollision(EWeaponCollisionType WeaponCollisionType) override;
 	virtual void PerformAttack(FGameplayTag& AttackTypeTag, FOnMontageEnded& MontageEndedDelegate) override;
-	virtual void Parried() override;
+	virtual void WasParried() override;
 
 	// 체력바 토글
 	void ToggleHealthBarVisibility(bool bVisibility);

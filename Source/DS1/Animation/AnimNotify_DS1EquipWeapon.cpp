@@ -50,7 +50,7 @@ void UAnimNotify_DS1EquipWeapon::Notify(USkeletalMeshComponent* MeshComp, UAnimS
 				if (EquipmentType == EDS1EquipmentType::Shield)
 				{
 					// 무기가 한손검이면 방패를 장착/해제
-					if (MainWeapon->GetCombatType() == ECombatType::SwordShield)
+					if (MainWeapon->GetCombatType() == EWeaponType::SwordShield)
 					{
 						if (ADS1Shield* Shield = CombatComponent->GetShield())
 						{
