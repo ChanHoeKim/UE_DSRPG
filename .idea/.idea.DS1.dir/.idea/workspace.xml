@@ -7,7 +7,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b78db35a-cc5a-4fd3-ace5-d286477db384" name="Changes" comment="" />
+    <list default="true" id="b78db35a-cc5a-4fd3-ace5-d286477db384" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.DS1.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.DS1.dir/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -19,41 +21,41 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "CopilotPractice"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;CopilotPractice&quot;
   }
-}]]></component>
+}</component>
   <component name="GithubPullRequestsUISettings"><![CDATA[{
   "selectedUrlAndAccountId": {
     "url": "https://github.com/CopilotPractice/UE_DSRPG.git",
-    "accountId": "98bc76c6-9bc4-4ec1-bec5-f22d2306f965"
+    "accountId": "40a4eecd-68f4-4e6f-9bbf-2e46b2c0dd83"
   }
 }]]></component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 5
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 5
+}</component>
   <component name="ProjectId" id="2yNv7DBGE0Rf0ylBMoFHYarBoEw" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "Uproject.DS1.executor": "Run",
-    "git-widget-placeholder": "main",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;Uproject.DS1.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="DS1" type="Uproject" factoryName="rider.uproject">
       <configuration_1 setup="1">
@@ -61,7 +63,7 @@
         <option name="PLATFORM" value="Win64" />
         <option name="CURRENT_LAUNCH_PROFILE" value="Local" />
         <option name="EXECUTABLE_PATH" value="C:\Program Files\Epic Games\UE_5.5\Engine\Binaries\Win64\UnrealEditor-Win64-DebugGame.exe" />
-        <option name="MANDATORY_PROGRAM_PARAMETERS" value=" &quot;C:\Users\user\RiderProjects\UE_DSRPG\DS1.uproject&quot;" />
+        <option name="MANDATORY_PROGRAM_PARAMETERS" value=" &quot;C:\Users\rlack\RiderProjects\UE_DSRPG\DS1.uproject&quot;" />
         <option name="CUSTOM_PROGRAM_PARAMETERS" value="" />
         <option name="WORKING_DIRECTORY" value="C:\Program Files\Epic Games\UE_5.5" />
         <option name="PASS_PARENT_ENVS" value="1" />
@@ -73,7 +75,7 @@
         <option name="CONFIGURATION" value="DebugGame" />
         <option name="PLATFORM" value="Win64" />
         <option name="CURRENT_LAUNCH_PROFILE" value="Local" />
-        <option name="EXECUTABLE_PATH" value="C:\Users\user\RiderProjects\UE_DSRPG\Binaries\Win64\DS1-Win64-DebugGame.exe" />
+        <option name="EXECUTABLE_PATH" value="C:\Users\rlack\RiderProjects\UE_DSRPG\Binaries\Win64\DS1-Win64-DebugGame.exe" />
         <option name="MANDATORY_PROGRAM_PARAMETERS" value="" />
         <option name="CUSTOM_PROGRAM_PARAMETERS" value="" />
         <option name="WORKING_DIRECTORY" value="C:\Program Files\Epic Games\UE_5.5" />
@@ -87,7 +89,7 @@
         <option name="PLATFORM" value="Win64" />
         <option name="CURRENT_LAUNCH_PROFILE" value="Local" />
         <option name="EXECUTABLE_PATH" value="C:\Program Files\Epic Games\UE_5.5\Engine\Binaries\Win64\UnrealEditor.exe" />
-        <option name="MANDATORY_PROGRAM_PARAMETERS" value=" &quot;C:\Users\user\RiderProjects\UE_DSRPG\DS1.uproject&quot;" />
+        <option name="MANDATORY_PROGRAM_PARAMETERS" value=" &quot;C:\Users\rlack\RiderProjects\UE_DSRPG\DS1.uproject&quot;" />
         <option name="CUSTOM_PROGRAM_PARAMETERS" value="" />
         <option name="WORKING_DIRECTORY" value="C:\Program Files\Epic Games\UE_5.5" />
         <option name="PASS_PARENT_ENVS" value="1" />
@@ -99,7 +101,7 @@
         <option name="CONFIGURATION" value="Development" />
         <option name="PLATFORM" value="Win64" />
         <option name="CURRENT_LAUNCH_PROFILE" value="Local" />
-        <option name="EXECUTABLE_PATH" value="C:\Users\user\RiderProjects\UE_DSRPG\Binaries\Win64\DS1.exe" />
+        <option name="EXECUTABLE_PATH" value="C:\Users\rlack\RiderProjects\UE_DSRPG\Binaries\Win64\DS1.exe" />
         <option name="MANDATORY_PROGRAM_PARAMETERS" value="" />
         <option name="CUSTOM_PROGRAM_PARAMETERS" value="" />
         <option name="WORKING_DIRECTORY" value="C:\Program Files\Epic Games\UE_5.5" />
@@ -112,7 +114,7 @@
         <option name="CONFIGURATION" value="Shipping" />
         <option name="PLATFORM" value="Win64" />
         <option name="CURRENT_LAUNCH_PROFILE" value="Local" />
-        <option name="EXECUTABLE_PATH" value="C:\Users\user\RiderProjects\UE_DSRPG\Binaries\Win64\DS1-Win64-Shipping.exe" />
+        <option name="EXECUTABLE_PATH" value="C:\Users\rlack\RiderProjects\UE_DSRPG\Binaries\Win64\DS1-Win64-Shipping.exe" />
         <option name="MANDATORY_PROGRAM_PARAMETERS" value="" />
         <option name="CUSTOM_PROGRAM_PARAMETERS" value="" />
         <option name="WORKING_DIRECTORY" value="C:\Program Files\Epic Games\UE_5.5" />
@@ -137,6 +139,7 @@
       <option name="presentableId" value="Default" />
       <updated>1749687677013</updated>
       <workItem from="1749687678640" duration="1128000" />
+      <workItem from="1749800096885" duration="180000" />
     </task>
     <servers />
   </component>
