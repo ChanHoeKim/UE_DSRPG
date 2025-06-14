@@ -76,7 +76,9 @@ ADS1Character::ADS1Character()
 	// Character의 사망에 따른 상태 처리를 위해 함수 바인딩
 	AttributeComponent->OnDeath.AddUObject(this, &ThisClass::OnDeath);
 
+	HitDilationTime = 0.f;
 	
+	//HitDilationTick = 000.1f;
 }
 
 void ADS1Character::BeginPlay()
@@ -120,6 +122,22 @@ void ADS1Character::BeginPlay()
 void ADS1Character::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+
+	if (bHitDelay)
+	{
+		//HitDilationTime = FMath::Clamp(HitDilationTime+HitDilationTick, 0.f, 1.f);
+
+		//HitDilationTime = FMath::Lerp(HitDilationTime, 1, 00.25f);
+
+		HitDilationTime = FMath::FInterpTo(HitDilationTime, 1.0f, DeltaTime, 4.0f); // 2.0f는 보간 속도
+		
+		UGameplayStatics::SetGlobalTimeDilation(GetWorld(), HitDilationTime);
+	}
+	if (HitDilationTime >= 1.0f)
+	{
+		bHitDelay = false;
+		HitDilationTime = 0.f;
+	}
 }
 
 //Pawn의 Controller가 변경이 될 때 호출되는 함수
@@ -310,6 +328,8 @@ float ADS1Character::TakeDamage(float Damage, const FDamageEvent& DamageEvent, A
 	// 움직이지 못하게 한다.
 	StateComponent->ToggleMovementInput(false);
 
+	bHitDelay = true;
+	
 	//ApplyDamage를 줄 때 Point 형태로 주었는지 체크
 	if (DamageEvent.IsOfType(FPointDamageEvent::ClassID))
 	{

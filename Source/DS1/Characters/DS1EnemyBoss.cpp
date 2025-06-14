@@ -20,15 +20,15 @@ void ADS1EnemyBoss::SeesTarget(AActor* InTargetActor)
 	}
 
 	// 보스 배경음악
-	if (BossMusicAsset)
-	{
-		if (!bStartedBossMusic)
-		{
-			bStartedBossMusic = true;
-			BossMusic = UGameplayStatics::SpawnSound2D(this, BossMusicAsset);
-			BossMusic->FadeIn(1.f);
-		}
-	}
+	// if (BossMusicAsset)
+	// {
+	// 	if (!bStartedBossMusic)
+	// 	{
+	// 		bStartedBossMusic = true;
+	// 		BossMusic = UGameplayStatics::SpawnSound2D(this, BossMusicAsset);
+	// 		BossMusic->FadeIn(1.f);
+	// 	}
+	// }
 }
 
 void ADS1EnemyBoss::Tick(float DeltaSeconds)

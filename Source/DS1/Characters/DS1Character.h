@@ -170,6 +170,15 @@ protected:
 	UPROPERTY(VisibleAnywhere, Category = "Movement Speed")
 	bool bSprinting = false;
 
+	// 맞아서 Delay 생길지 체크
+	UPROPERTY(VisibleAnywhere, Category = "Hit Delay")
+	bool bHitDelay = false;
+
+	float HitDilationTime;
+
+	float HitDilationTick;
+
+	
 // Combo Section
 protected:
 	// 콤보 시퀀스 진행중
