@@ -73,6 +73,10 @@ public:
 	FORCEINLINE float GetStaminaRatio() const { return BaseStamina / MaxStamina; };
 	FORCEINLINE float GetHealthRatio() const { return BaseHealth / MaxHealth; };
 
+	FORCEINLINE void SetStaminaRegenRate(float InRegenRate) {StaminaRegenRate = InRegenRate;}
+
+	FORCEINLINE void SetBaseStamina(float InBaseStamina) {BaseStamina = InBaseStamina;}
+	
 	/** 스테미너가 충분한지 체크 */
 	bool CheckHasEnoughStamina(float StaminaCost) const;
 

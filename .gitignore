@@ -77,3 +77,5 @@ DerivedDataCache/*
 # Map Asset(Asset size is too big)
 Content/_Assets/Maps/*
 Content/_Assets/Maps.zip
+Content/_Assets/EXECUTIONER/*
+Content/_Assets/EXECUTIONER.zip

@@ -52,6 +52,7 @@ void UBTService_SelectBehavior::UpdateBehavior(UBlackboardComponent* BlackboardC
 	// 스턴
 	if (StateComponent->IsCurrentStateEqualToAny(CheckTags))
 	{
+		
 		SetBehaviorKey(BlackboardComp, EDS1AIBehavior::Stunned);
 	}
 	else

@@ -79,7 +79,7 @@ void UDS1TargetingComponent::ToggleLockOn()
 
 void UDS1TargetingComponent::SwitchingLockedOnActor(ESwitchingDirection InDirection)
 {
-	if (::IsValid(LockedTargetActor))
+	if (IsValid(LockedTargetActor))
 	{
 		if (IDS1Targeting* Targeting = Cast<IDS1Targeting>(LockedTargetActor))
 		{
@@ -91,7 +91,7 @@ void UDS1TargetingComponent::SwitchingLockedOnActor(ESwitchingDirection InDirect
 			FindTargets(OutTargets);
 			AActor* TargetActor = FindClosestTarget(OutTargets, InDirection);
 
-			if (::IsValid(TargetActor))
+			if (IsValid(TargetActor))
 			{
 				if (IDS1Targeting* NewTargeting = Cast<IDS1Targeting>(TargetActor))
 				{
@@ -248,7 +248,7 @@ void UDS1TargetingComponent::LockOnTarget()
 	FindTargets(OutTargets);
 	AActor* TargetActor = FindClosestTarget(OutTargets);
 
-	if (::IsValid(TargetActor))
+	if (IsValid(TargetActor))
 	{
 		LockedTargetActor = TargetActor;
 		bIsLockOn = true;

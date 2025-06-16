@@ -58,7 +58,7 @@ void UAnimNotify_DS1KnockBack::Notify(USkeletalMeshComponent* MeshComp, UAnimSeq
 				// 		/* Message */ TEXT("맞음")
 				// 	);
 				// }
-				Character->NockDown();
+				Character->NockDown(MeshComp->GetOwner());
 			}
 		}
 	}

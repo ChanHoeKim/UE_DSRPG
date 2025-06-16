@@ -92,6 +92,16 @@ void ADS1Enemy::BeginPlay()
 void ADS1Enemy::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+
+	if (GEngine)
+	{
+		GEngine->AddOnScreenDebugMessage(
+			/* Key */ -1,
+			/* Duration */ 5.0f,
+			/* Color */ FColor::Green,
+			/* Message */ FString::Printf(TEXT("%f"), AttributeComponent->GetBaseStamina())
+		);
+	}
 }
 
 float ADS1Enemy::TakeDamage(float Damage, const FDamageEvent& DamageEvent, AController* EventInstigator, AActor* DamageCauser)
@@ -333,12 +343,11 @@ void ADS1Enemy::PerformAttack(FGameplayTag& AttackTypeTag, FOnMontageEnded& Mont
 	}
 }
 
-//패링 당할 때 실행
-void ADS1Enemy::WasParried()
+void ADS1Enemy::Parried()
 {
 	check(StateComponent);
 	check(CombatComponent);
-
+	
 	StopAnimMontage();
 	StateComponent->SetState(DS1GameplayTags::Character_State_Parried);
 
@@ -359,6 +368,18 @@ void ADS1Enemy::WasParried()
 			});
 		GetWorld()->GetTimerManager().SetTimer(ParriedDelayTimerHandle, TimerDelegate, Delay, false);
 	}
+
+	if (GEngine)
+	{
+		GEngine->AddOnScreenDebugMessage(
+			/* Key */ -1,
+			/* Duration */ 5.0f,
+			/* Color */ FColor::Green,
+			/* Message */ FString(TEXT("패링함 %f"))
+		);
+	}
+	
+	//AttributeComponent->SetBaseStamina(0.f);
 }
 
 void ADS1Enemy::ToggleHealthBarVisibility(bool bVisibility)

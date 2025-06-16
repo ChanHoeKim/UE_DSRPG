@@ -6,7 +6,10 @@
 #include "GameplayTagContainer.h"
 #include "GameFramework/Character.h"
 #include "Interfaces/DS1CombatInterface.h"
+#include "NiagaraSystem.h"
+#include "NiagaraFunctionLibrary.h"
 #include "DS1Character.generated.h"
+
 
 class UDS1EscWidget;
 class UDS1InputBlockingWidget;
@@ -23,6 +26,7 @@ class UCameraComponent;
 class UInputMappingContext;
 class UInputAction;
 class UDS1AttributeComponent;
+//class FNiagaraFunctionLibrary;
 
 UCLASS()
 class DS1_API ADS1Character : public ACharacter, public IDS1CombatInterface
@@ -36,6 +40,8 @@ private:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
 	UCameraComponent* FollowCamera;
 
+	
+	
 // Input Section
 private:
 	UPROPERTY(EditAnywhere, Category = "Input")
@@ -153,6 +159,9 @@ protected:
 	UPROPERTY(EditAnywhere, Category = "Effect")
 	UParticleSystem* BlockingParticle;
 
+	UPROPERTY(EditAnywhere, Category = "Effect")
+	UNiagaraSystem* DrinkPotionEffect;
+	
 protected:
 	// 질주 걸음 속도
 	UPROPERTY(EditAnywhere, Category="Movement Speed")
@@ -238,7 +247,7 @@ public:
 	void HitReaction(const AActor* Attacker, const EDS1DamageType InDamageType);
 	void OnDeath();
 
-	void NockDown();
+	void NockDown(const AActor* InInstigator);
 	
 protected:
 	/** 캐릭터가 이동중인지 체크 */
@@ -299,6 +308,7 @@ protected:
 	TSubclassOf<UUserWidget> EscWidgetClass;
 	UPROPERTY()
 	UDS1EscWidget* EscWidget; 
+	
 	
 protected:
 	/* 첫 공격 타입 반환 */

@@ -31,7 +31,7 @@ public:
 
 	virtual void PerformAttack(FGameplayTag& AttackTypeTag, FOnMontageEnded& MontageEndedDelegate) {}
 
-	virtual void WasParried() {}
+	virtual void Parried() {}
 
 	virtual void ToggleInvincibilityFrames(const bool bEnabled) {}
 };

@@ -297,8 +297,8 @@ float ADS1Character::TakeDamage(float Damage, const FDamageEvent& DamageEvent, A
 		//가해자 Pawn이 WasParried() 함수를 구현했는지 체크
 		if (IDS1CombatInterface* CombatInterface = Cast<IDS1CombatInterface>(EventInstigator->GetPawn()))
 		{
-			//패링 당함
-			CombatInterface->WasParried();
+			//패링 시도
+			CombatInterface->Parried();
 
 			// @Incomplete : 패링 판정 다시 확인
 			ADS1Weapon* MainWeapon = CombatComponent->GetMainWeapon();
@@ -442,10 +442,15 @@ void ADS1Character::OnDeath()
 	}
 }
 
-void ADS1Character::NockDown()
+void ADS1Character::NockDown(const AActor* InInstigator)
 {
 	PlayAnimMontage(NockDownMontage);
 	StateComponent->ToggleMovementInput(false);
+
+	// Actor 위치에서 가해자 위치를 정면으로 보게하는 회전값
+	const FRotator LookAtRotation = UKismetMathLibrary::FindLookAtRotation(GetActorLocation(), InInstigator->GetActorLocation());
+	
+	SetActorRotation(FRotator(LookAtRotation));
 }
 
 bool ADS1Character::IsMoving() const
@@ -864,6 +869,16 @@ void ADS1Character::Consume()
 	{
 		StateComponent->SetState(DS1GameplayTags::Character_State_DrinkingPotion);
 		PlayAnimMontage(DrinkingMontage);
+
+		// UNiagaraComponent* NiagaraComp = UNiagaraFunctionLibrary::SpawnSystemAttached(
+		// DrinkPotionEffect,                            // 이펙트
+		// GetMesh(),                                // 붙일 대상 (스켈레탈 메쉬)
+		// FName("head"),                            // 소켓 이름
+		// FVector(0.f, 0.f, 0.f),                   // 위치 오프셋
+		// FRotator::ZeroRotator,                   // 회전
+		// EAttachLocation::SnapToTarget,           // 위치 방식
+		// true                                      // 자동 파괴
+		//);
 	}
 }
 

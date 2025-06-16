@@ -5,6 +5,8 @@
 
 #include "AIController.h"
 #include "Components/DS1StateComponent.h"
+#include "GameFramework/Character.h"
+#include "GameFramework/PawnMovementComponent.h"
 #include "Interfaces/DS1CombatInterface.h"
 
 EBTNodeResult::Type UBTTask_PerformAttack::ExecuteTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory)
@@ -24,7 +26,7 @@ EBTNodeResult::Type UBTTask_PerformAttack::ExecuteTask(UBehaviorTreeComponent& O
                 // 몽타주 종료 시 실행될 코드
                 UE_LOG(LogTemp, Log, TEXT("Execute MontageEndedDelegate"));
 
-                if (::IsValid(&OwnerComp) == false)
+                if (IsValid(&OwnerComp) == false)
                 {
                     return;
                 }

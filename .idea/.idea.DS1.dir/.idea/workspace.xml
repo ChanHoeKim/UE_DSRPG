@@ -9,6 +9,30 @@
   <component name="ChangeListManager">
     <list default="true" id="b78db35a-cc5a-4fd3-ace5-d286477db384" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.DS1.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.DS1.dir/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/MetaHumans/Common/Female/Medium/NormalWeight/Body/metahuman_base_skel.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/MetaHumans/Common/Female/Medium/NormalWeight/Body/metahuman_base_skel.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/_Assets/Animations/TwoHanded/Attack/Heavy_Attack/AM_TwoHanded_Heavy_Attack_Boss.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/_Assets/Animations/TwoHanded/Attack/Heavy_Attack/AM_TwoHanded_Heavy_Attack_Boss.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/_Assets/Animations/TwoHanded/Parry/TwoHanded_Parried_Hit.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/_Assets/Animations/TwoHanded/Parry/TwoHanded_Parried_Hit.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/_Assets/Weapons/Mesh/Weapons/Polearm/SM_Polearm_1.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/_Assets/Weapons/Mesh/Weapons/Polearm/SM_Polearm_1.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/_Game/Blueprints/AI/BT_Boss.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/_Game/Blueprints/AI/BT_Boss.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/_Game/Blueprints/BP_EnemyBoss.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/_Game/Blueprints/BP_EnemyBoss.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/_Game/Blueprints/BP_Player.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/_Game/Blueprints/BP_Player.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/_Game/Blueprints/Equipments/BP_Polearm_Boss.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/_Game/Blueprints/Equipments/BP_Polearm_Boss.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/_Game/Data/DA_TwoHanded_Boss.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/_Game/Data/DA_TwoHanded_Boss.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/_Game/Maps/DevMap.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/_Game/Maps/DevMap.umap" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/DS1/AI/Service/BTService_SelectBehavior.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DS1/AI/Service/BTService_SelectBehavior.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/DS1/AI/Task/BTTask_PerformAttack.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DS1/AI/Task/BTTask_PerformAttack.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/DS1/AI/Task/BTTask_PerformAttack.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DS1/AI/Task/BTTask_PerformAttack.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/DS1/Animation/AnimNotify_DS1KnockBack.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DS1/Animation/AnimNotify_DS1KnockBack.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/DS1/Characters/DS1Character.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DS1/Characters/DS1Character.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/DS1/Characters/DS1Character.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DS1/Characters/DS1Character.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/DS1/Characters/DS1Enemy.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DS1/Characters/DS1Enemy.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/DS1/Characters/DS1Enemy.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DS1/Characters/DS1Enemy.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/DS1/Characters/DS1EnemyBoss.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DS1/Characters/DS1EnemyBoss.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/DS1/Components/DS1AttributeComponent.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DS1/Components/DS1AttributeComponent.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/DS1/Components/DS1TargetingComponent.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DS1/Components/DS1TargetingComponent.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/DS1/DS1.Build.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DS1/DS1.Build.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/DS1/Interfaces/DS1CombatInterface.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DS1/Interfaces/DS1CombatInterface.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/DS1/UI/DS1PlayerHUDWidget.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DS1/UI/DS1PlayerHUDWidget.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,9 +54,43 @@
   <component name="GithubPullRequestsUISettings"><![CDATA[{
   "selectedUrlAndAccountId": {
     "url": "https://github.com/CopilotPractice/UE_DSRPG.git",
-    "accountId": "40a4eecd-68f4-4e6f-9bbf-2e46b2c0dd83"
+    "accountId": "98bc76c6-9bc4-4ec1-bec5-f22d2306f965"
   }
 }]]></component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/../../../../Program Files/Epic Games/UE_5.5/Engine/Source/Runtime/Engine/Private/Character.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../../../Program Files/Epic Games/UE_5.5/Engine/Source/Runtime/Engine/Private/GameplayStatics.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/DS1/AI/DS1EnemyAIController.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/DS1/AI/DS1EnemyAIController.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/DS1/AI/Service/BTService_SelectBehavior.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/DS1/AI/Service/BTService_SelectBehavior.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/DS1/AI/Service/BTService_Strafe.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/DS1/AI/Service/BTService_Strafe.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/DS1/AI/Task/BTTask_PerformAttack.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/DS1/AI/Task/BTTask_PerformAttack.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/DS1/AI/Task/BTTask_UpdateMoveSpeed.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/DS1/AI/Task/BTTask_UpdateMoveSpeed.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/DS1/Animation/AnimNotify_DS1EquipWeapon.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/DS1/Animation/AnimNotify_DS1EquipWeapon.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/DS1/Animation/AnimNotify_DS1KnockBack.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/DS1/Animation/DS1AnimInstance.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/DS1/Characters/DS1Character.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/DS1/Characters/DS1Character.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/DS1/Characters/DS1Enemy.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/DS1/Characters/DS1Enemy.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/DS1/Characters/DS1EnemyBoss.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/DS1/Components/DS1AttributeComponent.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/DS1/Components/DS1AttributeComponent.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/DS1/Components/DS1StateComponent.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/DS1/DS1.Build.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/DS1/Equipments/DS1Equipment.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/DS1/Equipments/DS1Weapon.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/DS1/Equipments/DS1Weapon.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/DS1/Interfaces/DS1CombatInterface.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/DS1/UI/DS1PlayerHUDWidget.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/DS1/UI/DS1StatBarWidget.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/DS1/UI/DS1StatBarWidget.h" root0="FORCE_HIGHLIGHTING" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
   &quot;associatedIndex&quot;: 5
@@ -63,7 +121,7 @@
         <option name="PLATFORM" value="Win64" />
         <option name="CURRENT_LAUNCH_PROFILE" value="Local" />
         <option name="EXECUTABLE_PATH" value="C:\Program Files\Epic Games\UE_5.5\Engine\Binaries\Win64\UnrealEditor-Win64-DebugGame.exe" />
-        <option name="MANDATORY_PROGRAM_PARAMETERS" value=" &quot;C:\Users\rlack\RiderProjects\UE_DSRPG\DS1.uproject&quot;" />
+        <option name="MANDATORY_PROGRAM_PARAMETERS" value=" &quot;C:\Users\user\RiderProjects\UE_DSRPG\DS1.uproject&quot;" />
         <option name="CUSTOM_PROGRAM_PARAMETERS" value="" />
         <option name="WORKING_DIRECTORY" value="C:\Program Files\Epic Games\UE_5.5" />
         <option name="PASS_PARENT_ENVS" value="1" />
@@ -75,7 +133,7 @@
         <option name="CONFIGURATION" value="DebugGame" />
         <option name="PLATFORM" value="Win64" />
         <option name="CURRENT_LAUNCH_PROFILE" value="Local" />
-        <option name="EXECUTABLE_PATH" value="C:\Users\rlack\RiderProjects\UE_DSRPG\Binaries\Win64\DS1-Win64-DebugGame.exe" />
+        <option name="EXECUTABLE_PATH" value="C:\Users\user\RiderProjects\UE_DSRPG\Binaries\Win64\DS1-Win64-DebugGame.exe" />
         <option name="MANDATORY_PROGRAM_PARAMETERS" value="" />
         <option name="CUSTOM_PROGRAM_PARAMETERS" value="" />
         <option name="WORKING_DIRECTORY" value="C:\Program Files\Epic Games\UE_5.5" />
@@ -89,7 +147,7 @@
         <option name="PLATFORM" value="Win64" />
         <option name="CURRENT_LAUNCH_PROFILE" value="Local" />
         <option name="EXECUTABLE_PATH" value="C:\Program Files\Epic Games\UE_5.5\Engine\Binaries\Win64\UnrealEditor.exe" />
-        <option name="MANDATORY_PROGRAM_PARAMETERS" value=" &quot;C:\Users\rlack\RiderProjects\UE_DSRPG\DS1.uproject&quot;" />
+        <option name="MANDATORY_PROGRAM_PARAMETERS" value=" &quot;C:\Users\user\RiderProjects\UE_DSRPG\DS1.uproject&quot;" />
         <option name="CUSTOM_PROGRAM_PARAMETERS" value="" />
         <option name="WORKING_DIRECTORY" value="C:\Program Files\Epic Games\UE_5.5" />
         <option name="PASS_PARENT_ENVS" value="1" />
@@ -101,7 +159,7 @@
         <option name="CONFIGURATION" value="Development" />
         <option name="PLATFORM" value="Win64" />
         <option name="CURRENT_LAUNCH_PROFILE" value="Local" />
-        <option name="EXECUTABLE_PATH" value="C:\Users\rlack\RiderProjects\UE_DSRPG\Binaries\Win64\DS1.exe" />
+        <option name="EXECUTABLE_PATH" value="C:\Users\user\RiderProjects\UE_DSRPG\Binaries\Win64\DS1.exe" />
         <option name="MANDATORY_PROGRAM_PARAMETERS" value="" />
         <option name="CUSTOM_PROGRAM_PARAMETERS" value="" />
         <option name="WORKING_DIRECTORY" value="C:\Program Files\Epic Games\UE_5.5" />
@@ -114,7 +172,7 @@
         <option name="CONFIGURATION" value="Shipping" />
         <option name="PLATFORM" value="Win64" />
         <option name="CURRENT_LAUNCH_PROFILE" value="Local" />
-        <option name="EXECUTABLE_PATH" value="C:\Users\rlack\RiderProjects\UE_DSRPG\Binaries\Win64\DS1-Win64-Shipping.exe" />
+        <option name="EXECUTABLE_PATH" value="C:\Users\user\RiderProjects\UE_DSRPG\Binaries\Win64\DS1-Win64-Shipping.exe" />
         <option name="MANDATORY_PROGRAM_PARAMETERS" value="" />
         <option name="CUSTOM_PROGRAM_PARAMETERS" value="" />
         <option name="WORKING_DIRECTORY" value="C:\Program Files\Epic Games\UE_5.5" />
@@ -140,6 +198,7 @@
       <updated>1749687677013</updated>
       <workItem from="1749687678640" duration="1128000" />
       <workItem from="1749800096885" duration="180000" />
+      <workItem from="1750032762570" duration="29856000" />
     </task>
     <servers />
   </component>

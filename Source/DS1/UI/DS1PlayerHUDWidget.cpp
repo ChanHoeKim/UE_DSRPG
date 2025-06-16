@@ -95,13 +95,13 @@ void UDS1PlayerHUDWidget::OnWeaponChanged()
 			}
 
 			// 무기 아이콘 적용
-			if (::IsValid(WeaponWidget))
+			if (IsValid(WeaponWidget))
 			{
 				WeaponWidget->SetWeaponImage(WeaponIconTexture);
 			}
 
 			// 방패 아이콘 적용
-			if (::IsValid(ShieldWidget))
+			if (IsValid(ShieldWidget))
 			{
 				ShieldWidget->SetWeaponImage(ShieldIconTexture);
 			}

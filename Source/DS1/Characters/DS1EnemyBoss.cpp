@@ -14,7 +14,6 @@ void ADS1EnemyBoss::SeesTarget(AActor* InTargetActor)
 	{
 		if (BossHealthBarWidget)
 		{
-			// BossHealthBarWidget->SetHpRatio(1.f);
 			BossHealthBarWidget->SetVisibility(ESlateVisibility::SelfHitTestInvisible);
 		}
 	}
@@ -42,6 +41,8 @@ void ADS1EnemyBoss::BeginPlay()
 {
 	Super::BeginPlay();
 
+	AttributeComponent->SetStaminaRegenRate(2.f);
+	
 	// Enuemy 클래스에서 상속 받은 체력바 컴포넌트 삭제
 	// 보스는 사용안함.
 	if (HealthBarWidgetComponent)
