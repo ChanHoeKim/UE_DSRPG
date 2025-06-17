@@ -179,11 +179,11 @@ AActor* UDS1TargetingComponent::FindClosestTarget(TArray<AActor*>& InTargets, ES
 
 		if (bHit)
 		{
-			// 카메라의 시야를 기준으로 하기 때문에 내적 계산은 카메라 기준으로 처리합니다.
-			// Left 방향에 따른 내적 계산.
+			// 카메라의 시야를 기준으로 하기 때문에 내적 계산은 카메라 기준으로 처리
+			// Left 방향에 따른 내적 계산
 			if (InDirection == ESwitchingDirection::Left)
 			{
-				// 비교대상 Vector가 Normal 방향이기 때문에 반대로 계산됩니다.
+				// 비교대상 Vector가 Normal 방향이기 때문에 반대로 계산
 				if (FVector::DotProduct(Camera->GetRightVector(), OutHit.Normal) > 0.f == false)
 				{
 					continue;
@@ -201,8 +201,8 @@ AActor* UDS1TargetingComponent::FindClosestTarget(TArray<AActor*>& InTargets, ES
 
 			AActor* HitActor = OutHit.GetActor();
 
-			// 플레이어와 가장 가까운 타겟을 찾는다.
-			// 전방에 있는 가장 가까운 타겟을 찾기 위해서 카메라의 ForwardVector와 LookAt Vector를 내적합니다.
+			// 플레이어와 가장 가까운 타겟을 찾음
+			// 전방에 있는 가장 가까운 타겟을 찾기 위해서 카메라의 ForwardVector와 LookAt Vector를 내적
 			const FRotator LookAtRotation = UKismetMathLibrary::FindLookAtRotation(Character->GetActorLocation(), HitActor->GetActorLocation());
 			float CheckValue = FVector::DotProduct(Camera->GetForwardVector(), LookAtRotation.Vector());
 			

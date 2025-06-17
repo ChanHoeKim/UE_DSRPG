@@ -125,8 +125,8 @@ UAnimMontage* ADS1Weapon::GetHitReactMontage(const AActor* Attacker) const
 	}
 	else if (UKismetMathLibrary::InRange_FloatFloat(DeltaZ, 45.f, 135.f))
 	{
-		HitDirection = EHitDirection::Left;
-		//UE_LOG(LogTemp, Log, TEXT("Left"));
+		HitDirection = EHitDirection::Right;
+		//UE_LOG(LogTemp, Log, TEXT("Right"));
 	}
 	else if (UKismetMathLibrary::InRange_FloatFloat(DeltaZ, 135.f, 180.f)
 		|| UKismetMathLibrary::InRange_FloatFloat(DeltaZ, -180.f, -135.f))
@@ -136,8 +136,9 @@ UAnimMontage* ADS1Weapon::GetHitReactMontage(const AActor* Attacker) const
 	}
 	else if (UKismetMathLibrary::InRange_FloatFloat(DeltaZ, -135.f, -45.f))
 	{
-		HitDirection = EHitDirection::Right;
-		//UE_LOG(LogTemp, Log, TEXT("Right"));
+		HitDirection = EHitDirection::Left;
+		//UE_LOG(LogTemp, Log, TEXT("Left"));
+	
 	}
 
 	//히트 방향에 맞는 Montage를 재생

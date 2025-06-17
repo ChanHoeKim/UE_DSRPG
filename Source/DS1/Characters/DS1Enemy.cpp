@@ -24,6 +24,7 @@
 #include "Perception/AISense_Damage.h"
 #include "Sound/SoundCue.h"
 #include "UI/DS1BossHealthBarWidget.h"
+#include "UI/DS1EnemyHpBarWidget.h"
 #include "UI/DS1StatBarWidget.h"
 
 
@@ -196,7 +197,7 @@ void ADS1Enemy::OnAttributeChanged(EDS1AttributeType AttributeType, float InValu
 	{
 		if (HealthBarWidgetComponent)
 		{
-			if (const UDS1BossHealthBarWidget* StatBar = Cast<UDS1BossHealthBarWidget>(HealthBarWidgetComponent->GetWidget()))
+			if (const UDS1EnemyHpBarWidget* StatBar = Cast<UDS1EnemyHpBarWidget>(HealthBarWidgetComponent->GetWidget()))
 			{
 				StatBar->SetHpRatio(InValue);
 			}
@@ -208,10 +209,10 @@ void ADS1Enemy::SetupHealthBar()
 {
 	// if (HealthBarWidgetComponent)
 	// {
-	// 	if (UDS1BossHealthBarWidget* StatBar = Cast<UDS1BossHealthBarWidget>(HealthBarWidgetComponent->GetWidget()))
+	// 	if (UDS1EnemyHpBarWidget* HealthBar = Cast<UDS1EnemyHpBarWidget>(HealthBarWidgetComponent->GetWidget()))
 	// 	{
 	// 		// 컬러 설정.
-	// 		StatBar->FillColorAndOpacity = FLinearColor::Red;
+	// 		HealthBar->Fill = FLinearColor::Red;
 	// 	}
 	// }
 

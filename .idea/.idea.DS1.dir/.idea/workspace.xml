@@ -9,30 +9,9 @@
   <component name="ChangeListManager">
     <list default="true" id="b78db35a-cc5a-4fd3-ace5-d286477db384" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.DS1.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.DS1.dir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/MetaHumans/Common/Female/Medium/NormalWeight/Body/metahuman_base_skel.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/MetaHumans/Common/Female/Medium/NormalWeight/Body/metahuman_base_skel.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/_Assets/Animations/TwoHanded/Attack/Heavy_Attack/AM_TwoHanded_Heavy_Attack_Boss.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/_Assets/Animations/TwoHanded/Attack/Heavy_Attack/AM_TwoHanded_Heavy_Attack_Boss.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/_Assets/Animations/TwoHanded/Parry/TwoHanded_Parried_Hit.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/_Assets/Animations/TwoHanded/Parry/TwoHanded_Parried_Hit.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/_Assets/Weapons/Mesh/Weapons/Polearm/SM_Polearm_1.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/_Assets/Weapons/Mesh/Weapons/Polearm/SM_Polearm_1.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/_Game/Blueprints/AI/BT_Boss.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/_Game/Blueprints/AI/BT_Boss.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/_Game/Blueprints/BP_EnemyBoss.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/_Game/Blueprints/BP_EnemyBoss.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/_Game/Blueprints/BP_Player.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/_Game/Blueprints/BP_Player.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/_Game/Blueprints/Equipments/BP_Polearm_Boss.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/_Game/Blueprints/Equipments/BP_Polearm_Boss.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/_Game/Data/DA_TwoHanded_Boss.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/_Game/Data/DA_TwoHanded_Boss.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/_Game/Maps/DevMap.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/_Game/Maps/DevMap.umap" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/DS1/AI/Service/BTService_SelectBehavior.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DS1/AI/Service/BTService_SelectBehavior.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/DS1/AI/Task/BTTask_PerformAttack.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DS1/AI/Task/BTTask_PerformAttack.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/DS1/AI/Task/BTTask_PerformAttack.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DS1/AI/Task/BTTask_PerformAttack.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/DS1/Animation/AnimNotify_DS1KnockBack.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DS1/Animation/AnimNotify_DS1KnockBack.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/DS1/Characters/DS1Character.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DS1/Characters/DS1Character.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/DS1/Characters/DS1Character.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DS1/Characters/DS1Character.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/DS1/Characters/DS1Enemy.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DS1/Characters/DS1Enemy.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/DS1/Characters/DS1Enemy.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DS1/Characters/DS1Enemy.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/DS1/Characters/DS1EnemyBoss.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DS1/Characters/DS1EnemyBoss.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/DS1/Components/DS1AttributeComponent.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DS1/Components/DS1AttributeComponent.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/DS1/Components/DS1TargetingComponent.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DS1/Components/DS1TargetingComponent.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/DS1/DS1.Build.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DS1/DS1.Build.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/DS1/Interfaces/DS1CombatInterface.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DS1/Interfaces/DS1CombatInterface.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/DS1/UI/DS1PlayerHUDWidget.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DS1/UI/DS1PlayerHUDWidget.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/DS1/Equipments/DS1Weapon.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DS1/Equipments/DS1Weapon.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,13 +30,14 @@
     &quot;assignee&quot;: &quot;CopilotPractice&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/CopilotPractice/UE_DSRPG.git",
-    "accountId": "98bc76c6-9bc4-4ec1-bec5-f22d2306f965"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/CopilotPractice/UE_DSRPG.git&quot;,
+    &quot;accountId&quot;: &quot;98bc76c6-9bc4-4ec1-bec5-f22d2306f965&quot;
   }
-}]]></component>
+}</component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/../../../../Program Files/Epic Games/UE_5.5/Engine/Source/Developer/AITestSuite/Private/Tests/ResourceIdTest.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../Program Files/Epic Games/UE_5.5/Engine/Source/Runtime/Engine/Private/Character.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../Program Files/Epic Games/UE_5.5/Engine/Source/Runtime/Engine/Private/GameplayStatics.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/DS1/AI/DS1EnemyAIController.cpp" root0="FORCE_HIGHLIGHTING" />
@@ -198,7 +178,8 @@
       <updated>1749687677013</updated>
       <workItem from="1749687678640" duration="1128000" />
       <workItem from="1749800096885" duration="180000" />
-      <workItem from="1750032762570" duration="29856000" />
+      <workItem from="1750032762570" duration="30469000" />
+      <workItem from="1750117463305" duration="7233000" />
     </task>
     <servers />
   </component>
