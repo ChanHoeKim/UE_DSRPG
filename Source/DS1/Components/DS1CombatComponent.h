@@ -23,10 +23,10 @@ class DS1_API UDS1CombatComponent : public UActorComponent
 	GENERATED_BODY()
 
 public:
-	/** Combat 상태 전환을 알리는 Delegate */
+	/* Combat 상태 전환을 알리는 Delegate */
 	FDelegateOnChangedCombat OnChangedCombat;
 
-	/** 무기 변경을 알리는 Delegate */
+	/* 무기 변경을 알리는 Delegate */
 	FDelegateOnChangedWeapon OnChangedWeapon;
 
 protected:
@@ -43,11 +43,11 @@ protected:
 	UPROPERTY(EditAnywhere)
 	bool bCombatEnabled = false;
 
-	/** 방어자세를 취하고 있는지? */
+	/* 방어자세를 취하고 있는지? */
 	UPROPERTY()
 	bool bBlockingEnabled = false;
 
-	/** 마지막 AttackType */
+	/* 마지막 AttackType */
 	UPROPERTY(VisibleAnywhere)
 	FGameplayTag LastAttackType;
 
