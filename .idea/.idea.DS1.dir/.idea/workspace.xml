@@ -8,33 +8,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b78db35a-cc5a-4fd3-ace5-d286477db384" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.DS1.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.DS1.dir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Config/DefaultEngine.ini" beforeDir="false" afterPath="$PROJECT_DIR$/Config/DefaultEngine.ini" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/MetaHumans/Common/Female/Medium/NormalWeight/Body/metahuman_base_skel.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/MetaHumans/Common/Female/Medium/NormalWeight/Body/metahuman_base_skel.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/MetaHumans/Common/VersionInfo.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Content/MetaHumans/Common/VersionInfo.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/MetaHumans/Oskar/Body/Textures/T_Torso_BaseColor.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/MetaHumans/Oskar/Body/Textures/T_Torso_BaseColor.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/MetaHumans/Oskar/Shared/Materials/MI_Fabric_Torso_Simplified.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/MetaHumans/Oskar/Shared/Materials/MI_Fabric_Torso_Simplified.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/_Assets/Animations/Sword_and_Shield/Idle/AM_Idle_Equip.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/_Assets/Animations/Sword_and_Shield/Idle/AM_Idle_Equip.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/_Assets/Animations/TwoHanded/Attack/Special_Attack/AM_TwoHanded_Air_attack_Boss.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/_Assets/Animations/TwoHanded/Attack/Special_Attack/AM_TwoHanded_Air_attack_Boss.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/_Assets/Animations/TwoHanded/Attack/Special_Attack/AM_TwoHanded_SPAttack1.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/_Assets/Animations/TwoHanded/Attack/Special_Attack/AM_TwoHanded_SPAttack1.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/_Assets/Animations/TwoHanded/Attack/Special_Attack/TwoHanded_SPAttack1.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/_Assets/Animations/TwoHanded/Attack/Special_Attack/TwoHanded_SPAttack1.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/_Game/Blueprints/AI/BT_Boss.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/_Game/Blueprints/AI/BT_Boss.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/_Game/Blueprints/AI/BT_Enemy.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/_Game/Blueprints/AI/BT_Enemy.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/_Game/Blueprints/BP_Enemy.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/_Game/Blueprints/BP_Enemy.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/_Game/Blueprints/BP_Player.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/_Game/Blueprints/BP_Player.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/_Game/Data/DA_TwoHanded_Boss.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/_Game/Data/DA_TwoHanded_Boss.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/_Game/Maps/DevMap.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/_Game/Maps/DevMap.umap" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/DS1/AI/DS1EnemyAIController.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DS1/AI/DS1EnemyAIController.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/DS1/AI/DS1EnemyAIController.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DS1/AI/DS1EnemyAIController.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/DS1/AI/Service/BTService_SelectBehavior.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DS1/AI/Service/BTService_SelectBehavior.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/DS1/AI/Service/BTService_SelectBehaviorBoss.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DS1/AI/Service/BTService_SelectBehaviorBoss.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/DS1/AI/Service/BTService_SelectBehaviorBoss.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DS1/AI/Service/BTService_SelectBehaviorBoss.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/DS1/AI/Task/BTTask_FindPatrolPoint.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DS1/AI/Task/BTTask_FindPatrolPoint.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/DS1/Animation/AnimNotify_DS1KnockBack.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DS1/Animation/AnimNotify_DS1KnockBack.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/DS1/Characters/DS1Enemy.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DS1/Characters/DS1Enemy.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/DS1/Components/DS1AttributeComponent.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DS1/Components/DS1AttributeComponent.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/DS1/Components/DS1AttributeComponent.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DS1/Components/DS1AttributeComponent.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/DS1/Components/DS1CombatComponent.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DS1/Components/DS1CombatComponent.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/_Game/UI/WBP_MainMenu.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/_Game/UI/WBP_MainMenu.uasset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -213,6 +187,7 @@
       <workItem from="1750117463305" duration="7233000" />
       <workItem from="1750204939733" duration="25245000" />
       <workItem from="1750292291543" duration="4767000" />
+      <workItem from="1750299041739" duration="257000" />
     </task>
     <servers />
   </component>
