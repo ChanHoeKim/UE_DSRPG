@@ -96,6 +96,6 @@ public:
 
 private:
 	/** 스태미나 재충전 처리 핸들링 함수 */
-	void RegenerateStaminaHandler();
+	void RecoveryStaminaHandler();
 		
 };

@@ -18,7 +18,7 @@ ADS1EnemyAIController::ADS1EnemyAIController()
 
 void ADS1EnemyAIController::StopUpdateTarget()
 {
-    GetWorld()->GetTimerManager().ClearTimer(TimerHandle);
+    GetWorld()->GetTimerManager().ClearTimer(UpdateTargetTimerHandle);
     SetTarget(nullptr);
 }
 
@@ -31,7 +31,7 @@ void ADS1EnemyAIController::OnPossess(APawn* InPawn)
 	RunBehaviorTree(BehaviorTreeAsset);
 
     // UpdateTarget 타이머 등록
-    GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &ThisClass::UpdateTarget, 0.1f, true);
+    GetWorld()->GetTimerManager().SetTimer(UpdateTargetTimerHandle, this, &ThisClass::UpdateTarget, 0.1f, true);
 }
 
 void ADS1EnemyAIController::OnUnPossess()
@@ -44,15 +44,21 @@ void ADS1EnemyAIController::OnUnPossess()
 void ADS1EnemyAIController::UpdateTarget() const
 {
     TArray<AActor*> OutActors;
+    // 첫 번째 인자에 nullptr을 넣음으로서 Sight, Hearing, Damage 모두 인지 하도록 함
     AIPerceptionComponent->GetKnownPerceivedActors(nullptr, OutActors);
 
+    // World에 존재하는 Player 0번인 Character를 가져옴 
     ADS1Character* PlayerCharacter = Cast<ADS1Character>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0));
 
+    //AI Perception Component에 Player가 감지되었는지 확인
     if (OutActors.Contains(PlayerCharacter))
     {
+        //Player가 죽음 상태인지 체크
         if (!PlayerCharacter->IsDeath())
         {
+            //BlackBoard에 등록
             SetTarget(PlayerCharacter);
+            
             ControlledEnemy->ToggleHealthBarVisibility(true);
             ControlledEnemy->SeesTarget(PlayerCharacter);
         }

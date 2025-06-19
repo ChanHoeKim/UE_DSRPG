@@ -20,8 +20,8 @@ void UBTService_SelectBehaviorBoss::UpdateBehavior(UBlackboardComponent* Blackbo
 
 		if (UDS1AttributeComponent* AttributeComponent = ControlledEnemy->GetComponentByClass<UDS1AttributeComponent>())
 		{
-			// 스테미나가 부족하면.
-			if (AttributeComponent->GetBaseStamina() <= StaminaCheckValue)
+			// 스테미나가 부족하면
+			if (AttributeComponent->GetBaseStamina() <= StrafeActivationStaminaThreshold)
 			{
 				SetBehaviorKey(BlackboardComp, EDS1AIBehavior::Strafe);
 			}
@@ -41,6 +41,7 @@ void UBTService_SelectBehaviorBoss::UpdateBehavior(UBlackboardComponent* Blackbo
 			}
 		}
 	}
+	// 타겟이 없으면
 	else
 	{
 		SetBehaviorKey(BlackboardComp, EDS1AIBehavior::Idle);

@@ -49,12 +49,12 @@ void UBTService_SelectBehavior::UpdateBehavior(UBlackboardComponent* BlackboardC
 	CheckTags.AddTag(DS1GameplayTags::Character_State_Parried);
 	CheckTags.AddTag(DS1GameplayTags::Character_State_Stunned);
 
-	// 스턴
+	// 스턴 상태이면
 	if (StateComponent->IsCurrentStateEqualToAny(CheckTags))
 	{
-		
 		SetBehaviorKey(BlackboardComp, EDS1AIBehavior::Stunned);
 	}
+	
 	else
 	{
 		AActor* TargetActor = Cast<AActor>(BlackboardComp->GetValueAsObject(TargetKey.SelectedKeyName));
@@ -63,7 +63,7 @@ void UBTService_SelectBehavior::UpdateBehavior(UBlackboardComponent* BlackboardC
 		{
 			const float Distance = TargetActor->GetDistanceTo(ControlledEnemy);
 
-			// 공격범위 안쪽이면
+			// 공격 범위 안쪽이면
 			if (Distance <= AttackRangeDistance)
 			{
 				SetBehaviorKey(BlackboardComp, EDS1AIBehavior::MeleeAttack);
@@ -75,7 +75,7 @@ void UBTService_SelectBehavior::UpdateBehavior(UBlackboardComponent* BlackboardC
 		}
 		else
 		{
-			// Patrol point 있으면
+			// Patrol point가 있으면
 			if (ControlledEnemy->GetPatrolPoint() != nullptr)
 			{
 				SetBehaviorKey(BlackboardComp, EDS1AIBehavior::Patrol);

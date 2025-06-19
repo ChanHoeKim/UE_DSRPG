@@ -45,7 +45,7 @@ void UDS1AttributeComponent::ToggleRecoveryStamina(bool bEnabled, float StartDel
 	{
 		if (GetWorld()->GetTimerManager().IsTimerActive(RecoveryStaminaTimerHandle) == false)
 		{
-			GetWorld()->GetTimerManager().SetTimer(RecoveryStaminaTimerHandle, this, &ThisClass::RegenerateStaminaHandler, 0.1f, true, StartDelay);
+			GetWorld()->GetTimerManager().SetTimer(RecoveryStaminaTimerHandle, this, &ThisClass::RecoveryStaminaHandler, 0.1f, true, StartDelay);
 		}
 	}
 	else
@@ -110,7 +110,7 @@ void UDS1AttributeComponent::HealPlayer(float HealAmount)
 	BroadcastAttributeChanged(EDS1AttributeType::Health);
 }
 
-void UDS1AttributeComponent::RegenerateStaminaHandler()
+void UDS1AttributeComponent::RecoveryStaminaHandler()
 {
 	BaseStamina = FMath::Clamp(BaseStamina + StaminaRegenRate, 0.f, MaxStamina);
 

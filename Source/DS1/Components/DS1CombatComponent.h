@@ -47,7 +47,7 @@ protected:
 	UPROPERTY()
 	bool bBlockingEnabled = false;
 
-	/* 마지막 AttackType */
+	/* 실행 했던 AttackType */
 	UPROPERTY(VisibleAnywhere)
 	FGameplayTag LastAttackType;
 
@@ -82,7 +82,9 @@ public:
 		}
 		return nullptr;
 	}
+	
 
+	//Light, Running, Special, Heavy, Air 공격 타입중 하나를 받아옴(Weapon에서 데미지 처리를 위해)
 	FORCEINLINE FGameplayTag GetLastAttackType() const { return LastAttackType; };
 	FORCEINLINE void SetLastAttackType(const FGameplayTag& NewAttackTypeTag) { LastAttackType = NewAttackTypeTag; };
 

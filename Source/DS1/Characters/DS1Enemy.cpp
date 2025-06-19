@@ -94,15 +94,15 @@ void ADS1Enemy::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	if (GEngine)
-	{
-		GEngine->AddOnScreenDebugMessage(
-			/* Key */ -1,
-			/* Duration */ 5.0f,
-			/* Color */ FColor::Green,
-			/* Message */ FString::Printf(TEXT("%f"), AttributeComponent->GetBaseStamina())
-		);
-	}
+	// if (GEngine)
+	// {
+	// 	GEngine->AddOnScreenDebugMessage(
+	// 		/* Key */ -1,
+	// 		/* Duration */ 5.0f,
+	// 		/* Color */ FColor::Green,
+	// 		/* Message */ FString::Printf(TEXT("%f"), AttributeComponent->GetBaseStamina())
+	// 	);
+	// }
 }
 
 float ADS1Enemy::TakeDamage(float Damage, const FDamageEvent& DamageEvent, AController* EventInstigator, AActor* DamageCauser)
@@ -141,6 +141,8 @@ float ADS1Enemy::TakeDamage(float Damage, const FDamageEvent& DamageEvent, ACont
 
 void ADS1Enemy::EndPlay(const EEndPlayReason::Type EndPlayReason)
 {
+	// World에서 제거될 때 호출
+	// 혹시나 활성화 되었을 Timer 종료 
 	GetWorld()->GetTimerManager().ClearTimer(ParriedDelayTimerHandle);
 	GetWorld()->GetTimerManager().ClearTimer(StunnedDelayTimerHandle);
 	Super::EndPlay(EndPlayReason);
@@ -322,13 +324,14 @@ void ADS1Enemy::PerformAttack(FGameplayTag& AttackTypeTag, FOnMontageEnded& Mont
 		// 상태를 공격 중으로 변경
 		StateComponent->SetState(DS1GameplayTags::Character_State_Attacking);
 
-		// 어떤 타입의 공격을 수행중인지 체크를 위해
+		// 현재 어떤 Type의 공격을 실행 했는지 CombatComponent에 넘겨줌
+		// Light, Heavy, Air 등..
 		CombatComponent->SetLastAttackType(AttackTypeTag);
 
 		// 스테미너 회복 중지
 		AttributeComponent->ToggleRecoveryStamina(false);
 
-		// 첫 번째 공격 타입에 맞는 
+		// 공격 타입 범위에 맞는(Light, Heavy, Air 중...) 하나를 실행 
 		if (UAnimMontage* Montage = Weapon->GetRandomMontageForTag(AttackTypeTag))
 		{
 			if (UAnimInstance* AnimInstance = GetMesh()->GetAnimInstance())

@@ -19,12 +19,14 @@ protected:
 	UPROPERTY(EditAnywhere)
 	UBehaviorTree* BehaviorTreeAsset;
 
-	/** AI가 주변환경을 인식할 수 있게 해주는 컴포넌트 */
+	/* AI가 주변을 인식(시각, 청각)할 수 있게 해주는 컴포넌트 */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	UAIPerceptionComponent* AIPerceptionComponent;
 
-	FTimerHandle TimerHandle;
+	// Controller가 빙의 후 UpdateTarget을 계속 호출 시키기 위한 Timer
+ 	FTimerHandle UpdateTargetTimerHandle;
 
+	// Controller가 빙의한 대상
 	UPROPERTY()
 	ADS1Enemy* ControlledEnemy;
 

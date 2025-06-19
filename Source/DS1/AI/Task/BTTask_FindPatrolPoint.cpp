@@ -16,11 +16,11 @@ EBTNodeResult::Type UBTTask_FindPatrolPoint::ExecuteTask(UBehaviorTreeComponent&
         return EBTNodeResult::Failed;
     }
 
-    if (ADS1Enemy* Character = Cast<ADS1Enemy>(ControlledPawn))
+    if (ADS1Enemy* Enemy = Cast<ADS1Enemy>(ControlledPawn))
     {
         // TargetPoint의 Location을 Blackboard에 저장.
-        OwnerComp.GetBlackboardComponent()->SetValueAsVector(BlackboardLocation.SelectedKeyName, Character->GetPatrolPoint()->GetActorLocation());
-        Character->IncrementPatrolIndex();
+        OwnerComp.GetBlackboardComponent()->SetValueAsVector(BlackboardLocation.SelectedKeyName, Enemy->GetPatrolPoint()->GetActorLocation());
+        Enemy->IncrementPatrolIndex();
         return EBTNodeResult::Succeeded;
     }
 
