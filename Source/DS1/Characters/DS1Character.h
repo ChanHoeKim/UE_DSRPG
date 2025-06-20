@@ -59,46 +59,49 @@ private:
 	UPROPERTY(EditAnywhere, Category = "Input")
 	UInputAction* InteractAction;
 
-	/** 전투 활성화/비활성화 토글 */
+	/* 전투 활성화/비활성화 토글 */
 	UPROPERTY(EditAnywhere, Category = "Input")
 	UInputAction* ToggleCombatAction;
 
-	/** Attack */
+	/* Attack */
 	UPROPERTY(EditAnywhere, Category = "Input")
 	UInputAction* AttackAction;
 
-	/** Heavy Attack */
+	/* Heavy Attack */
 	UPROPERTY(EditAnywhere, Category = "Input")
 	UInputAction* HeavyAttackAction;
 
-	/** LockedOn */
+	/* LockedOn */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
 	UInputAction* LockOnTargetAction;
 
-	/** 왼쪽으로 타겟 전환 */
+	/* 왼쪽으로 타겟 전환 */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
 	UInputAction* LeftTargetAction;
 
-	/** 오른쪽으로 타겟 전환 */
+	/* 오른쪽으로 타겟 전환 */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
 	UInputAction* RightTargetAction;
 
-	/** 방어 자세 */
+	/* 방어 자세 */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
 	UInputAction* BlockAction;
 
-	/** 패링 */
+	/* 패링 */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
 	UInputAction* ParryAction;
 
-	/** 포션마시기 */
+	/* 포션마시기 */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
 	UInputAction* ConsumeAction;
 
-	/** ESC */
+	/* ESC */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
 	UInputAction* EscAction;
 
+	/* (죽음 상태일 때만 작동하는) Enter */
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
+	UInputAction* EnterAction;
 private:
 	/** 캐릭터의 각종 스탯 관리 */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
@@ -179,14 +182,6 @@ protected:
 	UPROPERTY(VisibleAnywhere, Category = "Movement Speed")
 	bool bSprinting = false;
 
-	// 맞아서 Delay 생길지 체크
-	UPROPERTY(VisibleAnywhere, Category = "Hit Delay")
-	bool bHitDelay = false;
-
-	float HitDilationTime;
-
-	float HitDilationTick;
-
 	
 // Combo Section
 protected:
@@ -222,6 +217,7 @@ protected:
 
 	UPROPERTY(EditAnywhere, Category = "Montage")
 	UAnimMontage* NockDownMontage;
+	
 public:
 	ADS1Character();
 
@@ -299,6 +295,8 @@ protected:
 	/* 포션 마시기 */
 	void Consume();
 
+	void DeadStatePressedEnter();
+	
 	void Esc();
 	UPROPERTY()
 	UDS1GameInstance* GI;

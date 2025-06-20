@@ -35,14 +35,14 @@ ADS1Enemy::ADS1Enemy()
 	bUseControllerRotationYaw = false;
 	GetCharacterMovement()->bOrientRotationToMovement = true;
 
-	// Targeting 구체 생성및 Collision 설정.
+	// Targeting 구체 생성및 Collision 설정
 	TargetingSphereComponent = CreateDefaultSubobject<USphereComponent>(TEXT("TargetingSphere"));
 	TargetingSphereComponent->SetupAttachment(GetRootComponent());
 	TargetingSphereComponent->SetCollisionObjectType(COLLISION_OBJECT_TARGETING);
 	TargetingSphereComponent->SetCollisionResponseToAllChannels(ECR_Ignore);
 	TargetingSphereComponent->SetCollisionResponseToChannel(ECC_Visibility, ECR_Block);
 
-	// LockOn 위젯.
+	// LockOn 위젯
 	LockOnWidgetComponent = CreateDefaultSubobject<UWidgetComponent>(TEXT("LockOnWidgetComponent"));
 	LockOnWidgetComponent->SetupAttachment(GetRootComponent());
 	LockOnWidgetComponent->SetRelativeLocation(FVector(0.f, 0.f, 50.f));
@@ -169,7 +169,7 @@ void ADS1Enemy::OnDeath()
 		MeshComp->SetSimulatePhysics(true);
 	}
 
-	// 무기를 떨군다.
+	// 무기를 떨굼.
 	if (ADS1Weapon* MainWeapon = CombatComponent->GetMainWeapon())
 	{
 		MainWeapon->Drop();

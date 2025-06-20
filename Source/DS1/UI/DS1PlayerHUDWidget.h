@@ -6,6 +6,7 @@
 #include "Blueprint/UserWidget.h"
 #include "DS1PlayerHUDWidget.generated.h"
 
+class UTextBlock;
 enum class EDS1AttributeType : uint8;
 class UDS1WeaponWidget;
 class UDS1PotionWidget;
@@ -34,12 +35,20 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	UTexture2D* BlankIcon;
 
+	UPROPERTY(meta = (BindWidgetAnim), Transient)
+	UWidgetAnimation* DeadStateFadeInText;
+	
 public:
 	UDS1PlayerHUDWidget(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get());
 
 public:
 	virtual void NativeConstruct() override;
 
+	void PlayDeadStateFadeInText();
+
+	//FORCEINLINE UWidgetAnimation* GetDeadStateFadeInText() const{return DeadStateFadeInText;}
+
+	
 protected:
 	
 	void OnAttributeChanged(EDS1AttributeType AttributeType, float InValue);

@@ -111,7 +111,7 @@ public:
 
 	// 체력바 토글
 	void ToggleHealthBarVisibility(bool bVisibility);
-	// 타겟 본다.
+	// 타겟 볼 때 호출
 	virtual void SeesTarget(AActor* InTargetActor);
 
 public:

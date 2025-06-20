@@ -18,7 +18,7 @@ void ADS1Shield::EquipItem()
 
 			FName AttachSocketName = UnequipSocketName;
 
-			// 무기가 이미 있는지 체크해보고 방패의 소켓 위치를 조정해준다.
+			// 무기가 이미 있는지 체크해보고 방패의 소켓 위치를 조정
 			const ADS1Weapon* MainWeapon = CombatComponent->GetMainWeapon();
 			if (IsValid(MainWeapon))
 			{

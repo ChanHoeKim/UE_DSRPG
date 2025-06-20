@@ -20,7 +20,9 @@ public class DS1 : ModuleRules
 			"GameplayTags",
 			"AnimGraphRuntime",
             "NavigationSystem",
-            "Niagara"
+            "Niagara",
+            "Slate",
+            "SlateCore"
         });
 
 		// Uncomment if you are using Slate UI

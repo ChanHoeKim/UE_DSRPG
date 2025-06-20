@@ -30,13 +30,13 @@ void ADS1FistWeapon::EquipItem()
 			// 주먹은 바로 전투 상태
 			CombatComponent->SetCombatEnabled(true);
 
-			// 장착한 무기의 WeaponType 업데이트.
+			// 장착한 무기의 WeaponType 업데이트
 			if (UDS1AnimInstance* Anim = Cast<UDS1AnimInstance>(OwnerCharacter->GetMesh()->GetAnimInstance()))
 			{
 				Anim->UpdateCombatMode(WeaponType);
 			}
 
-			// 무기를 소유한 OwnerActor를 충돌에서 무시합니다.
+			// 무기를 소유한 OwnerActor를 충돌에서 무시
 			RightWeaponCollision->AddIgnoredActor(OwnerCharacter);
 			LeftWeaponCollision->AddIgnoredActor(OwnerCharacter);
 		}

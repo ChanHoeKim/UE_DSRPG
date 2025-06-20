@@ -14,7 +14,31 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="20496529-dae9-41c7-ac78-e14a0932fabf" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.DS1.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.DS1.dir/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.DS1/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.DS1/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/_Game/Blueprints/BP_Player.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/_Game/Blueprints/BP_Player.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/_Game/Blueprints/Equipments/BP_Polearm_Boss.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/_Game/Blueprints/Equipments/BP_Polearm_Boss.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/_Game/Input/IMC_DefaultMappingContext.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/_Game/Input/IMC_DefaultMappingContext.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/_Game/UI/WBP_PlayerHUD.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/_Game/UI/WBP_PlayerHUD.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/_Game/UI/WBP_PlayerStat.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/_Game/UI/WBP_PlayerStat.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/DS1/Animation/AnimNotify_DS1EquipWeapon.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DS1/Animation/AnimNotify_DS1EquipWeapon.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/DS1/Characters/DS1Character.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DS1/Characters/DS1Character.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/DS1/Characters/DS1Character.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DS1/Characters/DS1Character.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/DS1/Characters/DS1Enemy.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DS1/Characters/DS1Enemy.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/DS1/Characters/DS1Enemy.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DS1/Characters/DS1Enemy.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/DS1/Components/DS1AttributeComponent.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DS1/Components/DS1AttributeComponent.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/DS1/Components/DS1AttributeComponent.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DS1/Components/DS1AttributeComponent.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/DS1/Components/DS1CombatComponent.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DS1/Components/DS1CombatComponent.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/DS1/Components/DS1TargetingComponent.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DS1/Components/DS1TargetingComponent.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/DS1/Components/DS1TargetingComponent.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DS1/Components/DS1TargetingComponent.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/DS1/DS1.Build.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DS1/DS1.Build.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/DS1/Equipments/DS1Armour.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DS1/Equipments/DS1Armour.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/DS1/Equipments/DS1FistWeapon.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DS1/Equipments/DS1FistWeapon.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/DS1/Equipments/DS1Shield.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DS1/Equipments/DS1Shield.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/DS1/Equipments/DS1Weapon.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DS1/Equipments/DS1Weapon.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/DS1/Items/DS1PickupItem.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DS1/Items/DS1PickupItem.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/DS1/UI/DS1PlayerHUDWidget.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DS1/UI/DS1PlayerHUDWidget.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/DS1/UI/DS1PlayerHUDWidget.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DS1/UI/DS1PlayerHUDWidget.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,22 +60,37 @@
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/CopilotPractice/UE_DSRPG.git&quot;,
-    &quot;accountId&quot;: &quot;98bc76c6-9bc4-4ec1-bec5-f22d2306f965&quot;
+    &quot;accountId&quot;: &quot;40a4eecd-68f4-4e6f-9bbf-2e46b2c0dd83&quot;
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/../../../../Program Files/Epic Games/UE_5.5/Engine/Source/Developer/AnimationWidgets/Public/SAdvancedTransformInputBox.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../Program Files/Epic Games/UE_5.5/Engine/Source/Developer/AutomationWindow/Private/SAutomationTestItem.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../../../Program Files/Epic Games/UE_5.5/Engine/Source/Programs/AutomationTool/AutomationUtils/DeviceReservation.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../Program Files/Epic Games/UE_5.5/Engine/Source/Programs/AutomationTool/AutomationUtils/GoogleDriveHelper.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../Program Files/Epic Games/UE_5.5/Engine/Source/Programs/AutomationTool/BuildGraph/.editorconfig" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../Program Files/Epic Games/UE_5.5/Engine/Source/Programs/AutomationTool/Gauntlet/SelfTest/TestData/LogParser/Win64Assert.txt" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../../../Program Files/Epic Games/UE_5.5/Engine/Source/Programs/AutomationTool/Linux/Linux.Automation.csproj" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../../../Program Files/Epic Games/UE_5.5/Engine/Source/Programs/AutomationTool/Linux/LinuxPlatform.Automation.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../../../Program Files/Epic Games/UE_5.5/Engine/Source/Programs/AutomationTool/Localization/LocalizationConfigFileParams.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../../../Program Files/Epic Games/UE_5.5/Engine/Source/Programs/AutomationTool/Turnkey/Turnkey.Automation.csproj" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../../../Program Files/Epic Games/UE_5.5/Engine/Source/Programs/AutomationTool/XLocLocalization/XLocLocalizationProvider.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../../../Program Files/Epic Games/UE_5.5/Engine/Source/Programs/Shared/EpicGames.Core/BinaryArchiveReader.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../../../Program Files/Epic Games/UE_5.5/Engine/Source/Programs/Shared/EpicGames.Horde/Jobs/Templates/ITemplate.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../../../Program Files/Epic Games/UE_5.5/Engine/Source/Programs/Shared/EpicGames.Perforce/IPerforceOutput.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../Program Files/Epic Games/UE_5.5/Engine/Source/Programs/Shared/EpicGames.Perforce/NativePerforceConnection.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../../../Program Files/Epic Games/UE_5.5/Engine/Source/Programs/UnrealBuildTool/Modes/ServerMode.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../Program Files/Epic Games/UE_5.5/Engine/Source/Runtime/Core/Public/Delegates/DelegateSignatureImpl.inl" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../Program Files/Epic Games/UE_5.5/Engine/Source/Runtime/Core/Public/Delegates/MulticastDelegateBase.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../../../Program Files/Epic Games/UE_5.5/Engine/Source/Runtime/Core/Public/GenericPlatform/GenericPlatformMemory.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../../../Program Files/Epic Games/UE_5.5/Engine/Source/Runtime/Core/Public/Math/ApproximatingSine()CurvesSnippets.tps" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../../../Program Files/Epic Games/UE_5.5/Engine/Source/Runtime/Core/Public/Math/UnrealMathNeon.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../Program Files/Epic Games/UE_5.5/Engine/Source/Runtime/Engine/Classes/Animation/AnimInstance.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../../../Program Files/Epic Games/UE_5.5/Engine/Source/Runtime/Engine/Classes/Engine/EngineBaseTypes.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../Program Files/Epic Games/UE_5.5/Engine/Source/Runtime/Engine/Classes/Engine/HitResult.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../Program Files/Epic Games/UE_5.5/Engine/Source/Runtime/Engine/Classes/GameFramework/CharacterMovementComponent.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../Program Files/Epic Games/UE_5.5/Engine/Source/Runtime/Engine/Private/GameplayStatics.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../../../Program Files/Epic Games/UE_5.5/Engine/Source/Runtime/Engine/Private/KismetSystemLibrary.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../Program Files/Epic Games/UE_5.5/Engine/Source/Runtime/GameplayTags/Classes/GameplayTagContainer.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/DS1/Characters/DS1EnemyBoss.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/DS1/Characters/DS1EnemyBoss.h" root0="FORCE_HIGHLIGHTING" />
@@ -246,6 +285,8 @@
       <workItem from="1750126423684" duration="1125000" />
       <workItem from="1750127610072" duration="13433000" />
       <workItem from="1750147530973" duration="1304000" />
+      <workItem from="1750320143119" duration="3064000" />
+      <workItem from="1750379920033" duration="8633000" />
     </task>
     <servers />
   </component>

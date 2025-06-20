@@ -16,6 +16,7 @@
 #include "Components/DS1PotionInventoryComponent.h"
 #include "Components/DS1StateComponent.h"
 #include "Components/DS1TargetingComponent.h"
+#include "Components/TextBlock.h"
 #include "Engine/DamageEvents.h"
 #include "Equipments/DS1FistWeapon.h"
 #include "Equipments/DS1Weapon.h"
@@ -30,7 +31,7 @@
 
 ADS1Character::ADS1Character()
 {
-	PrimaryActorTick.bCanEverTick = true;
+	//PrimaryActorTick.bCanEverTick = true;
 
 	/* 컨트롤러의 회전을 따라가지 않게 함 */
 	bUseControllerRotationPitch = false;
@@ -75,10 +76,7 @@ ADS1Character::ADS1Character()
 	
 	// Character의 사망에 따른 상태 처리를 위해 함수 바인딩
 	AttributeComponent->OnDeath.AddUObject(this, &ThisClass::OnDeath);
-
-	HitDilationTime = 0.f;
 	
-	//HitDilationTick = 000.1f;
 }
 
 void ADS1Character::BeginPlay()
@@ -123,21 +121,7 @@ void ADS1Character::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	if (bHitDelay)
-	{
-		//HitDilationTime = FMath::Clamp(HitDilationTime+HitDilationTick, 0.f, 1.f);
-
-		//HitDilationTime = FMath::Lerp(HitDilationTime, 1, 00.25f);
-
-		HitDilationTime = FMath::FInterpTo(HitDilationTime, 1.0f, DeltaTime, 4.0f); // 2.0f는 보간 속도
-		
-		UGameplayStatics::SetGlobalTimeDilation(GetWorld(), HitDilationTime);
-	}
-	if (HitDilationTime >= 1.0f)
-	{
-		bHitDelay = false;
-		HitDilationTime = 0.f;
-	}
+	
 }
 
 //Pawn의 Controller가 변경이 될 때 호출되는 함수
@@ -207,6 +191,9 @@ void ADS1Character::SetupPlayerInputComponent(UInputComponent* PlayerInputCompon
 
 		// Esc
 		EnhancedInputComponent->BindAction(EscAction, ETriggerEvent::Triggered, this, &ThisClass::Esc);
+
+		//죽었을 때 아무키나 눌러서 다시 시작
+		EnhancedInputComponent->BindAction(EnterAction, ETriggerEvent::Triggered, this, &ThisClass::DeadStatePressedEnter);
 	}
 }
 
@@ -325,10 +312,8 @@ float ADS1Character::TakeDamage(float Damage, const FDamageEvent& DamageEvent, A
 		StateComponent->SetState(DS1GameplayTags::Character_State_Hit); // Hit 액션을 위해
 	}
 
-	// 움직이지 못하게 한다.
+	// 움직임 막음
 	StateComponent->ToggleMovementInput(false);
-
-	bHitDelay = true;
 	
 	//ApplyDamage를 줄 때 Point 형태로 주었는지 체크
 	if (DamageEvent.IsOfType(FPointDamageEvent::ClassID))
@@ -440,6 +425,11 @@ void ADS1Character::OnDeath()
 		MeshComp->SetCollisionResponseToChannel(ECC_Camera, ECR_Ignore);
 		MeshComp->SetSimulatePhysics(true);
 	}
+
+	if (PlayerHUDWidget)
+	{
+		PlayerHUDWidget->PlayDeadStateFadeInText();
+	}
 }
 
 void ADS1Character::NockDown(const AActor* InInstigator)
@@ -531,11 +521,7 @@ void ADS1Character::Move(const FInputActionValue& Values)
 
 		const FVector ForwardVector = FRotationMatrix(YawRotator).GetUnitAxis(EAxis::X);
 		const FVector RightVector = FRotationMatrix(YawRotator).GetUnitAxis(EAxis::Y);
-
-		// 주어진 월드 방향 벡터(보통 정규화됨)를 따라 'ScaleValue'만큼 스케일된 이동 입력을 추가합니다. 
-		// ScaleValue가 0보다 작으면, 이동은 반대 방향으로 이루어집니다.
-		// ScaleValue는 아날로그 입력에 사용될 수 있습니다. 
-		// 예를 들어, 0.5 값은 정상 값의 절반을 적용하고, -1.0은 방향을 반대로 합니다.
+		
 		AddMovementInput(ForwardVector, MovementVector.Y);
 		AddMovementInput(RightVector, MovementVector.X);
 		
@@ -805,8 +791,8 @@ void ADS1Character::Blocking()
 {
 	check(CombatComponent);
 	check(StateComponent);
-
-	if (CombatComponent->GetMainWeapon())
+	
+	if (CombatComponent->GetMainWeapon() && CombatComponent->GetShield() && CombatComponent->IsCombatEnabled())
 	{
 		if (CanPlayerBlockStance())
 		{
@@ -826,13 +812,16 @@ void ADS1Character::BlockingEnd()
 	check(CombatComponent);
 	check(StateComponent);
 
-	CombatComponent->SetBlockingEnabled(false);
-	if (UDS1AnimInstance* AnimInstance = Cast<UDS1AnimInstance>(GetMesh()->GetAnimInstance()))
+	if (CombatComponent->GetMainWeapon() && CombatComponent->GetShield() && CombatComponent->IsCombatEnabled())
 	{
-		AnimInstance->UpdateBlocking(false);
-		StateComponent->ClearState();
+		CombatComponent->SetBlockingEnabled(false);
+		if (UDS1AnimInstance* AnimInstance = Cast<UDS1AnimInstance>(GetMesh()->GetAnimInstance()))
+		{
+			AnimInstance->UpdateBlocking(false);
+			StateComponent->ClearState();
+		}
+		GetCharacterMovement()->MaxWalkSpeed = NormalWalkSpeed;
 	}
-	GetCharacterMovement()->MaxWalkSpeed = NormalWalkSpeed;
 }
 
 void ADS1Character::Parrying()
@@ -869,16 +858,18 @@ void ADS1Character::Consume()
 	{
 		StateComponent->SetState(DS1GameplayTags::Character_State_DrinkingPotion);
 		PlayAnimMontage(DrinkingMontage);
+		
+	}
+}
 
-		// UNiagaraComponent* NiagaraComp = UNiagaraFunctionLibrary::SpawnSystemAttached(
-		// DrinkPotionEffect,                            // 이펙트
-		// GetMesh(),                                // 붙일 대상 (스켈레탈 메쉬)
-		// FName("head"),                            // 소켓 이름
-		// FVector(0.f, 0.f, 0.f),                   // 위치 오프셋
-		// FRotator::ZeroRotator,                   // 회전
-		// EAttachLocation::SnapToTarget,           // 위치 방식
-		// true                                      // 자동 파괴
-		//);
+void ADS1Character::DeadStatePressedEnter()
+{
+	//UE_LOG(LogTemp, Warning, TEXT("Pressed key: %s"), *Key.ToString());
+	
+	if (IsDeath())
+	{
+		// 레벨 이동
+		UGameplayStatics::OpenLevel(this, FName("DevMap")); 
 	}
 }
 
@@ -971,24 +962,29 @@ bool ADS1Character::CanPerformParry() const
 	check(AttributeComponent);
 
 	ADS1Weapon* MainWeapon = CombatComponent->GetMainWeapon();
-	if (!IsValid(MainWeapon))
+	// if (!IsValid(MainWeapon))
+	// {
+	// 	return false;
+	// }
+
+	if (MainWeapon && CombatComponent->GetShield() && CombatComponent->IsCombatEnabled())
 	{
-		return false;
+		FGameplayTagContainer CheckTags;
+		CheckTags.AddTag(DS1GameplayTags::Character_State_Attacking);
+		CheckTags.AddTag(DS1GameplayTags::Character_State_Rolling);
+		CheckTags.AddTag(DS1GameplayTags::Character_State_GeneralAction);
+		CheckTags.AddTag(DS1GameplayTags::Character_State_Hit);
+		CheckTags.AddTag(DS1GameplayTags::Character_State_Blocking);
+		CheckTags.AddTag(DS1GameplayTags::Character_State_Death);
+		CheckTags.AddTag(DS1GameplayTags::Character_State_Parrying);
+		CheckTags.AddTag(DS1GameplayTags::Character_State_DrinkingPotion);
+
+		return StateComponent->IsCurrentStateEqualToAny(CheckTags) == false &&
+			MainWeapon->GetCombatType() == EWeaponType::SwordShield &&
+			AttributeComponent->CheckHasEnoughStamina(1.f);
 	}
-
-	FGameplayTagContainer CheckTags;
-	CheckTags.AddTag(DS1GameplayTags::Character_State_Attacking);
-	CheckTags.AddTag(DS1GameplayTags::Character_State_Rolling);
-	CheckTags.AddTag(DS1GameplayTags::Character_State_GeneralAction);
-	CheckTags.AddTag(DS1GameplayTags::Character_State_Hit);
-	CheckTags.AddTag(DS1GameplayTags::Character_State_Blocking);
-	CheckTags.AddTag(DS1GameplayTags::Character_State_Death);
-	CheckTags.AddTag(DS1GameplayTags::Character_State_Parrying);
-	CheckTags.AddTag(DS1GameplayTags::Character_State_DrinkingPotion);
-
-	return StateComponent->IsCurrentStateEqualToAny(CheckTags) == false &&
-		MainWeapon->GetCombatType() == EWeaponType::SwordShield &&
-		AttributeComponent->CheckHasEnoughStamina(1.f);
+	
+	return false;
 }
 
 // 패링 시도를 했고, 패링에 성공

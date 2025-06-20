@@ -41,7 +41,7 @@ void UAnimNotify_DS1EquipWeapon::Notify(USkeletalMeshComponent* MeshComp, UAnimS
 						WeaponSocketName = MainWeapon->GetUnequipSocketName();
 					}
 
-					// AttachToPlayer 함수보다 먼저 호출해야한다.
+					// AttachToPlayer 함수보다 먼저 호출해야함.
 					CombatComponent->SetCombatEnabled(bCombatEnabled);
 					MainWeapon->AttachToOwner(WeaponSocketName);
 				}

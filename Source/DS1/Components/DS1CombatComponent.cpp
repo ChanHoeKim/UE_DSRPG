@@ -60,7 +60,7 @@ void UDS1CombatComponent::SetArmour(ADS1Armour* NewArmour)
     {
 	    if (IsValid(EquippedArmourPart))
 	    {
-		    // PickupItem으로 만든다.
+		    // PickupItem으로 생성
             if (const AActor* OwnerActor = GetOwner())
             {
                 SpawnPickupItem(OwnerActor, EquippedArmourPart->GetClass());

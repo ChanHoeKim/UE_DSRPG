@@ -35,7 +35,7 @@ void ADS1PickupItem::OnConstruction(const FTransform& Transform)
 {
 	Super::OnConstruction(Transform);
 
-	// 설정된 장비(무기)아이템의 클래스 정보를 이용해서 PickupItem의 외형을 설정.
+	// 설정된 장비(무기)아이템의 클래스 정보를 이용해서 PickupItem의 외형을 설정
 	if (EquipmentClass)
 	{
 		if (ADS1Equipment* CDO = EquipmentClass->GetDefaultObject<ADS1Equipment>())
@@ -51,7 +51,7 @@ void ADS1PickupItem::Interact(AActor* InteractionActor)
 	FActorSpawnParameters SpawnParams;
 	SpawnParams.Owner = InteractionActor;
 
-	// 장비 아이템을 Spawn하고 캐릭터의 Socket에 장착.
+	// 장비 아이템을 Spawn하고 캐릭터의 Socket에 장착
 	ADS1Equipment* SpawnItem = GetWorld()->SpawnActor<ADS1Equipment>(EquipmentClass, GetActorTransform(), SpawnParams);
 	if (SpawnItem)
 	{

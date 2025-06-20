@@ -44,6 +44,8 @@ protected:
 	/** 스태미나 재충전 타이머 핸들 */
 	FTimerHandle RecoveryStaminaTimerHandle;
 
+	FTimerHandle HitImpactTimerHandle;
+	
 public:	
 	UDS1AttributeComponent();
 
@@ -94,6 +96,24 @@ public:
 	/** 체력 회복 */
 	void HealPlayer(float HealAmount);
 
+
+
+	// 맞아서 Delay 생길지 체크
+	UPROPERTY(VisibleAnywhere, Category = "Hit Delay")
+	bool bHitDelay = false;
+	
+	float HitDilationTime;
+	
+	void HitImpactSlow();
+
+	void HitImpactCameraShake();
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Camera Shake")
+	TSubclassOf<UCameraShakeBase> HitCameraShakeClass;
+
+	// UPROPERTY()
+	// UCameraShakeBase* HitCameraShake;
+	
 private:
 	/** 스태미나 재충전 처리 핸들링 함수 */
 	void RecoveryStaminaHandler();

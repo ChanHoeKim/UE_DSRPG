@@ -52,7 +52,7 @@ void UDS1TargetingComponent::TickComponent(float DeltaTime, ELevelTick TickType,
 
 	if (IDS1Targeting* Targeting = Cast<IDS1Targeting>(LockedTargetActor))
 	{
-		// TargetingRadius 보다 멀어지면 LockedOn을 중단한다.
+		// TargetingRadius 보다 멀어지면 LockedOn을 중단
 		if (Targeting->CanBeTargeted() == false || Distance > TargetingRadius)
 		{
 			StopLockOn();

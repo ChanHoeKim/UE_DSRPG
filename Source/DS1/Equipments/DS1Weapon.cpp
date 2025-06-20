@@ -60,10 +60,10 @@ void ADS1Weapon::EquipItem()
 		}
 
 		
-		// 무기를 소유한 OwnerActor를 충돌에서 무시합니다.
+		// 무기를 소유한 OwnerActor를 충돌에서 무시
 		RightWeaponCollision->AddIgnoredActor(GetOwner());
 
-		// 방패를 이미 가지고 있는지 체크해서 소켓의 위치를 잡아준다.
+		// 방패를 이미 가지고 있는지 체크해서 소켓의 위치를 잡아
 		if (ADS1Shield* Shield = CombatComponent->GetShield())
 		{
 			FName ShieldAttachSocket = Shield->GetUnequipSocketName();

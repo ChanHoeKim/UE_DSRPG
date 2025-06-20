@@ -47,6 +47,11 @@ void UDS1PlayerHUDWidget::NativeConstruct()
 	}
 }
 
+void UDS1PlayerHUDWidget::PlayDeadStateFadeInText()
+{
+	PlayAnimation(DeadStateFadeInText);
+}
+
 void UDS1PlayerHUDWidget::OnAttributeChanged(EDS1AttributeType AttributeType, float InValue)
 {
 	switch (AttributeType)
@@ -78,7 +83,7 @@ void UDS1PlayerHUDWidget::OnWeaponChanged()
 			UTexture2D* WeaponIconTexture = BlankIcon;
 			UTexture2D* ShieldIconTexture = BlankIcon;
 
-			// 무기의 아이콘을 골라준다.
+			// 무기의 아이콘을 선택
 			if (const ADS1Weapon* MainWeapon = CombatComponent->GetMainWeapon())
 			{
 				if (MainWeapon->GetCombatType() != EWeaponType::MeleeFists)
@@ -88,7 +93,7 @@ void UDS1PlayerHUDWidget::OnWeaponChanged()
 				}
 			}
 
-			// 방패 아이콘을 골라준다.
+			// 방패 아이콘을 선택
 			if (const ADS1Shield* Shield = CombatComponent->GetShield())
 			{
 				ShieldIconTexture = Shield->GetEquipmentIcon();
