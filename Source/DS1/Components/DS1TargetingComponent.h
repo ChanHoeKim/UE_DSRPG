@@ -17,15 +17,15 @@ class DS1_API UDS1TargetingComponent : public UActorComponent
 	GENERATED_BODY()
 
 protected:
-	/** LockOn 시킬 후보군을 감지할 영역의 크기(반지름) */
+	/* LockOn 시킬 후보군을 감지할 영역의 크기(반지름) */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	float TargetingRadius = 500.f;
+	float TargetingRadius = 1000.f;
 
-	/** LockOn시 카메라 회전 속도 */
+	/* LockOn시 카메라 회전 속도 */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	float FaceLockOnRotationSpeed = 20.f;
 
-	/** 디버그 드로우 타입 */
+	/* 디버그 드로우 타입 */
 	UPROPERTY(EditAnywhere)
 	TEnumAsByte<EDrawDebugTrace::Type> DrawDebugType = EDrawDebugTrace::ForDuration;
 
@@ -36,11 +36,11 @@ protected:
 	UPROPERTY()
 	UCameraComponent* Camera;
 
-	/** 현재 LockOn된 대상 */
+	/* 현재 LockOn된 대상 */
 	UPROPERTY()
 	AActor* LockedTargetActor;
 
-	/** LockOn 상태 관리 */
+	/* LockOn 상태 관리 */
 	bool bIsLockOn = false;
 
 public:

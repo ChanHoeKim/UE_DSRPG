@@ -15,11 +15,10 @@
   <component name="ChangeListManager">
     <list default="true" id="20496529-dae9-41c7-ac78-e14a0932fabf" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.DS1/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.DS1/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/DS1/Animation/AnimNotify_DS1KnockBack.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DS1/Animation/AnimNotify_DS1KnockBack.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/_Game/Maps/DevMap.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/_Game/Maps/DevMap.umap" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/DS1/Characters/DS1Character.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DS1/Characters/DS1Character.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/DS1/Characters/DS1EnemyBoss.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DS1/Characters/DS1EnemyBoss.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/DS1/Components/DS1TargetingComponent.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DS1/Components/DS1TargetingComponent.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/DS1/Components/DS1WeaponCollisionComponent.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DS1/Components/DS1WeaponCollisionComponent.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/DS1/Components/DS1TargetingComponent.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DS1/Components/DS1TargetingComponent.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/DS1/UI/DS1StartMenuWidget.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DS1/UI/DS1StartMenuWidget.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,14 +51,17 @@
     <setting file="file://$PROJECT_DIR$/../../../../Program Files/Epic Games/UE_5.5/Engine/Source/Programs/AutomationTool/AutomationUtils/GoogleDriveHelper.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../Program Files/Epic Games/UE_5.5/Engine/Source/Programs/AutomationTool/BuildGraph/.editorconfig" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../Program Files/Epic Games/UE_5.5/Engine/Source/Programs/AutomationTool/Gauntlet/Gauntlet.Automation.csproj" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../../../Program Files/Epic Games/UE_5.5/Engine/Source/Programs/AutomationTool/Gauntlet/SelfTest/TestData/LogParser/LinuxFatalError.txt" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../Program Files/Epic Games/UE_5.5/Engine/Source/Programs/AutomationTool/Gauntlet/SelfTest/TestData/LogParser/Win64Assert.txt" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../Program Files/Epic Games/UE_5.5/Engine/Source/Programs/AutomationTool/Linux/Linux.Automation.csproj" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../Program Files/Epic Games/UE_5.5/Engine/Source/Programs/AutomationTool/Linux/LinuxPlatform.Automation.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../Program Files/Epic Games/UE_5.5/Engine/Source/Programs/AutomationTool/Localization/LocalizationConfigFileParams.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../Program Files/Epic Games/UE_5.5/Engine/Source/Programs/AutomationTool/Mac/Mac.Automation.csproj" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../Program Files/Epic Games/UE_5.5/Engine/Source/Programs/AutomationTool/Turnkey/Turnkey.Automation.csproj" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../../../Program Files/Epic Games/UE_5.5/Engine/Source/Programs/AutomationTool/XLocLocalization/XLocLocalization.Automation.csproj" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../Program Files/Epic Games/UE_5.5/Engine/Source/Programs/AutomationTool/XLocLocalization/XLocLocalizationProvider.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../Program Files/Epic Games/UE_5.5/Engine/Source/Programs/Shared/EpicGames.Core/BinaryArchiveReader.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../../../Program Files/Epic Games/UE_5.5/Engine/Source/Programs/Shared/EpicGames.Horde/HordeHttpAuthHandler.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../Program Files/Epic Games/UE_5.5/Engine/Source/Programs/Shared/EpicGames.Horde/Jobs/Templates/ITemplate.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../Program Files/Epic Games/UE_5.5/Engine/Source/Programs/Shared/EpicGames.Perforce/IPerforceOutput.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../Program Files/Epic Games/UE_5.5/Engine/Source/Programs/Shared/EpicGames.Perforce/NativePerforceConnection.cs" root0="FORCE_HIGHLIGHTING" />
@@ -272,6 +274,7 @@
       <workItem from="1750320143119" duration="3064000" />
       <workItem from="1750379920033" duration="8724000" />
       <workItem from="1750418053387" duration="2423000" />
+      <workItem from="1750421782010" duration="2990000" />
     </task>
     <servers />
   </component>

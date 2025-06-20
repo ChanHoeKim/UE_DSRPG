@@ -37,7 +37,8 @@ void UDS1StartMenuWidget::StartButtonClick()
 	FTimerHandle TimerHandle;
 	GetWorld()->GetTimerManager().SetTimer(TimerHandle, [this]()
 	{
-		UGameplayStatics::OpenLevel(this, FName("DevMap"));
+		UGameplayStatics::OpenLevel(this, FName("Meadow_Environment_Set_Map"));
+		//UGameplayStatics::OpenLevel(this, FName("DevMap"));
 		// 입력 모드 전환
 		if (APlayerController* PC = GetWorld()->GetFirstPlayerController())
 		{

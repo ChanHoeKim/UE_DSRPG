@@ -870,7 +870,8 @@ void ADS1Character::DeadStatePressedEnter()
 	if (IsDeath())
 	{
 		// 레벨 이동
-		UGameplayStatics::OpenLevel(this, FName("DevMap")); 
+		//UGameplayStatics::OpenLevel(this, FName("DevMap"));
+		UGameplayStatics::OpenLevel(this, FName("Meadow_Environment_Set_Map")); 
 	}
 }
 
