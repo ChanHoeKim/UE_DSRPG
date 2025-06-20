@@ -13,33 +13,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="20496529-dae9-41c7-ac78-e14a0932fabf" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.DS1.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.DS1.dir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.DS1/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.DS1/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/_Game/Blueprints/BP_Player.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/_Game/Blueprints/BP_Player.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/_Game/Blueprints/Equipments/BP_Polearm_Boss.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/_Game/Blueprints/Equipments/BP_Polearm_Boss.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/_Game/Input/IMC_DefaultMappingContext.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/_Game/Input/IMC_DefaultMappingContext.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/_Game/UI/WBP_PlayerHUD.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/_Game/UI/WBP_PlayerHUD.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/_Game/UI/WBP_PlayerStat.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/_Game/UI/WBP_PlayerStat.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/DS1/Animation/AnimNotify_DS1EquipWeapon.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DS1/Animation/AnimNotify_DS1EquipWeapon.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/DS1/Characters/DS1Character.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DS1/Characters/DS1Character.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/DS1/Characters/DS1Character.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DS1/Characters/DS1Character.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/DS1/Characters/DS1Enemy.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DS1/Characters/DS1Enemy.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/DS1/Characters/DS1Enemy.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DS1/Characters/DS1Enemy.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/DS1/Components/DS1AttributeComponent.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DS1/Components/DS1AttributeComponent.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/DS1/Components/DS1AttributeComponent.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DS1/Components/DS1AttributeComponent.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/DS1/Components/DS1CombatComponent.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DS1/Components/DS1CombatComponent.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/DS1/Components/DS1TargetingComponent.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DS1/Components/DS1TargetingComponent.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/DS1/Components/DS1TargetingComponent.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DS1/Components/DS1TargetingComponent.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/DS1/DS1.Build.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DS1/DS1.Build.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/DS1/Equipments/DS1Armour.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DS1/Equipments/DS1Armour.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/DS1/Equipments/DS1FistWeapon.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DS1/Equipments/DS1FistWeapon.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/DS1/Equipments/DS1Shield.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DS1/Equipments/DS1Shield.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/DS1/Equipments/DS1Weapon.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DS1/Equipments/DS1Weapon.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/DS1/Items/DS1PickupItem.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DS1/Items/DS1PickupItem.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/DS1/UI/DS1PlayerHUDWidget.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DS1/UI/DS1PlayerHUDWidget.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/DS1/UI/DS1PlayerHUDWidget.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DS1/UI/DS1PlayerHUDWidget.h" afterDir="false" />
-    </list>
+    <list default="true" id="20496529-dae9-41c7-ac78-e14a0932fabf" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -286,7 +260,7 @@
       <workItem from="1750127610072" duration="13433000" />
       <workItem from="1750147530973" duration="1304000" />
       <workItem from="1750320143119" duration="3064000" />
-      <workItem from="1750379920033" duration="8633000" />
+      <workItem from="1750379920033" duration="8724000" />
     </task>
     <servers />
   </component>
