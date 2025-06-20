@@ -76,7 +76,8 @@ void UDS1WeaponCollisionComponent::CollisionTrace()
         TraceObjectTypes, // 생성자에서 Pawn만 감지하도록 추가
         false, // 복잡한 콜리전 미사용
         IgnoredActors, // 무시할 액터
-        DrawDebugType, // 화면에 표출되는 방식
+        //DrawDebugType,
+        EDrawDebugTrace::None, // 화면에 표출되는 방식
         OutHits, //                       감지된 결과
         true // 자신 무시할지 여부
         );

@@ -23,7 +23,7 @@ void UAnimNotify_DS1KnockBack::Notify(USkeletalMeshComponent* MeshComp, UAnimSeq
 	TArray<AActor*> ActorsToIgnore;
 	ActorsToIgnore.Add(MeshComp->GetOwner());
 	
-	UKismetSystemLibrary::DrawDebugSphere(MeshComp, OriginLocation, DamageRadius, 12, FLinearColor::White, 2.f, 1.f);
+	//UKismetSystemLibrary::DrawDebugSphere(MeshComp, OriginLocation, DamageRadius, 12, FLinearColor::White, 2.f, 1.f);
 	bool bCheck = UKismetSystemLibrary::SphereOverlapActors(
 		MeshComp,
 		OriginLocation,

@@ -126,7 +126,8 @@ void UDS1TargetingComponent::FindTargets(TArray<AActor*>& OutTargetingActors) co
 		ObjectTypes,
 		false,
 		ActorsToIgnore,
-		DrawDebugType,
+		//DrawDebugType,
+		EDrawDebugTrace::None,
 		OutHits,
 		true);
 
@@ -173,7 +174,8 @@ AActor* UDS1TargetingComponent::FindClosestTarget(TArray<AActor*>& InTargets, ES
 			UEngineTypes::ConvertToTraceType(ECC_Visibility),
 			false,
 			ActorsToIgnore,
-			DrawDebugType,
+			//DrawDebugType,
+			EDrawDebugTrace::None, 
 			OutHit,
 			true);
 
