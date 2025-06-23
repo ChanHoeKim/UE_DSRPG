@@ -39,30 +39,30 @@ void UAnimNotify_DS1KnockBack::Notify(USkeletalMeshComponent* MeshComp, UAnimSeq
 
 	//;
 	
-	for (AActor* Actor : OverlappedActors)
-	{
-		if (!Actor) continue;
-		
-		if (ADS1Character* Character = Cast<ADS1Character>(Actor))
-		{
-			TagCheck = Character->GetStateComponent()->IsCurrentStateEqualToAny(CheckTags);
-
-			if (bCheck && TagCheck == false)
-			{
-				// if (GEngine)
-				// {
-				// 	GEngine->AddOnScreenDebugMessage(
-				// 		/* Key */ -1,
-				// 		/* Duration */ 5.0f,
-				// 		/* Color */ FColor::Green,
-				// 		/* Message */ TEXT("맞음")
-				// 	);
-				// }
-				Character->NockDown(MeshComp->GetOwner());
-			}
-		}
-	}
-	
+	// for (AActor* Actor : OverlappedActors)
+	// {
+	// 	if (!Actor) continue;
+	// 	
+	// 	if (ADS1Character* Character = Cast<ADS1Character>(Actor))
+	// 	{
+	// 		TagCheck = Character->GetStateComponent()->IsCurrentStateEqualToAny(CheckTags);
+	//
+	// 		if (bCheck && TagCheck == false)
+	// 		{
+	// 			// if (GEngine)
+	// 			// {
+	// 			// 	GEngine->AddOnScreenDebugMessage(
+	// 			// 		/* Key */ -1,
+	// 			// 		/* Duration */ 5.0f,
+	// 			// 		/* Color */ FColor::Green,
+	// 			// 		/* Message */ TEXT("맞음")
+	// 			// 	);
+	// 			// }
+	// 			Character->NockDown(MeshComp->GetOwner());
+	// 		}
+	// 	}
+	// }
+	//
 	
 
 	APawn* OwnerPawn = Cast<APawn>(MeshComp->GetOwner());

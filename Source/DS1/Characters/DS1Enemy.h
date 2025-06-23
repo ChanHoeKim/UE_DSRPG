@@ -23,7 +23,7 @@ class DS1_API ADS1Enemy : public ACharacter, public IDS1Targeting, public IDS1Co
 	GENERATED_BODY()
 
 protected:
-	/** 타겟팅 충돌 체크용 */
+	/* 타겟팅 충돌 체크용 */
 	UPROPERTY(VisibleAnywhere)
 	USphereComponent* TargetingSphereComponent;
 
@@ -39,11 +39,11 @@ protected:
 	UPROPERTY(VisibleAnywhere)
 	UDS1RotationComponent* RotationComponent;
 
-	/** LockOn UI Widget */
+	/* LockOn UI Widget */
 	UPROPERTY(VisibleAnywhere)
 	UWidgetComponent* LockOnWidgetComponent;
 
-	/** HealthBar */
+	/* HealthBar */
 	UPROPERTY(VisibleAnywhere)
 	UWidgetComponent* HealthBarWidgetComponent;
 
@@ -71,7 +71,7 @@ protected:
 	FTimerHandle ParriedDelayTimerHandle;
 	FTimerHandle StunnedDelayTimerHandle;
 
-	/** 피격시 스턴 확률 */
+	/* 피격시 스턴 확률 */
 	UPROPERTY(EditAnywhere)
 	int StunnedRate = 0;
 
@@ -98,9 +98,9 @@ protected:
 
 public:
 	// IDS1Targeting 구현.
-	/** 타겟킹시 처리할 로직 처리 */
+	/* 타겟킹시 처리할 로직 처리 */
 	virtual void OnTargeted(bool bTargeted) override;
-	/** 타겟팅 가능한지 체크 */
+	/* 타겟팅 가능한지 체크 */
 	virtual bool CanBeTargeted() override;
 
 	// IDS1CombatInterface 구현.

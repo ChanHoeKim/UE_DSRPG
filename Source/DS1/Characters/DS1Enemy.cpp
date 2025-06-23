@@ -112,7 +112,7 @@ float ADS1Enemy::TakeDamage(float Damage, const FDamageEvent& DamageEvent, ACont
 	if (AttributeComponent)
 	{
 		AttributeComponent->TakeDamageAmount(ActualDamage);
-		GEngine->AddOnScreenDebugMessage(0, 1.5f, FColor::Cyan, FString::Printf(TEXT("Damaged : %f"), ActualDamage));
+		//GEngine->AddOnScreenDebugMessage(0, 1.5f, FColor::Cyan, FString::Printf(TEXT("Damaged : %f"), ActualDamage));
 	}
 
 	if (DamageEvent.IsOfType(FPointDamageEvent::ClassID))
@@ -373,15 +373,15 @@ void ADS1Enemy::Parried()
 		GetWorld()->GetTimerManager().SetTimer(ParriedDelayTimerHandle, TimerDelegate, Delay, false);
 	}
 
-	if (GEngine)
-	{
-		GEngine->AddOnScreenDebugMessage(
-			/* Key */ -1,
-			/* Duration */ 5.0f,
-			/* Color */ FColor::Green,
-			/* Message */ FString(TEXT("패링함 %f"))
-		);
-	}
+	// if (GEngine)
+	// {
+	// 	GEngine->AddOnScreenDebugMessage(
+	// 		/* Key */ -1,
+	// 		/* Duration */ 5.0f,
+	// 		/* Color */ FColor::Green,
+	// 		/* Message */ FString(TEXT("패링함"))
+	// 	);
+	// }
 	
 	//AttributeComponent->SetBaseStamina(0.f);
 }

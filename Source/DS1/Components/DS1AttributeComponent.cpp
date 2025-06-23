@@ -153,15 +153,15 @@ void UDS1AttributeComponent::HitImpactCameraShake()
 	if (PC && HitCameraShakeClass)
 	{
 		PC->ClientStartCameraShake(HitCameraShakeClass, 5.f);
-		if (GEngine)
-		{
-			GEngine->AddOnScreenDebugMessage(
-				-1,                             // Key (-1 = 항상 새 메시지로)
-				5.0f,                           // Duration (초)
-				FColor::Green,                 // 텍스트 색상
-				TEXT("Camera Shake")   // 출력 메시지
-			);
-		}
+		// if (GEngine)
+		// {
+		// 	GEngine->AddOnScreenDebugMessage(
+		// 		-1,                             // Key (-1 = 항상 새 메시지로)
+		// 		5.0f,                           // Duration (초)
+		// 		FColor::Green,                 // 텍스트 색상
+		// 		TEXT("Camera Shake")   // 출력 메시지
+		// 	);
+		// }
 	}
 }
 

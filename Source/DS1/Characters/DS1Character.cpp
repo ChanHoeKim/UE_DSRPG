@@ -405,6 +405,8 @@ void ADS1Character::HitReaction(const AActor* Attacker, const EDS1DamageType InD
 		{
 			if (UAnimMontage* HitReactAnimMontage = CombatComponent->GetMainWeapon()->GetMontageForTag(DS1GameplayTags::Character_Action_KnockBackHit))
 			{
+				const FRotator LookAtRotation = UKismetMathLibrary::FindLookAtRotation(GetActorLocation(), Attacker->GetActorLocation());
+				SetActorRotation(FRotator(LookAtRotation));
 				PlayAnimMontage(HitReactAnimMontage);
 			}
 		}
@@ -434,7 +436,7 @@ void ADS1Character::OnDeath()
 
 void ADS1Character::NockDown(const AActor* InInstigator)
 {
-	PlayAnimMontage(NockDownMontage);
+	//PlayAnimMontage(NockDownMontage);
 	StateComponent->ToggleMovementInput(false);
 
 	// Actor 위치에서 가해자 위치를 정면으로 보게하는 회전값

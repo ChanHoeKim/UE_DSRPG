@@ -53,34 +53,34 @@ public:
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
 public:
-	/** LockedOn On/Off */
+	/* LockedOn On/Off */
 	void ToggleLockOn();
 
-	/** LockOn 대상 스위칭 */
+	/* LockOn 대상 스위칭 */
 	void SwitchingLockedOnActor(ESwitchingDirection InDirection);
 
-	/** LockOn 상태 */
+	/* LockOn 상태 */
 	FORCEINLINE bool IsLockOn() const { return bIsLockOn; }
 
 protected:
-	/** LockOn 시킬 후보군을 찾음 */
+	/* LockOn 시킬 후보군을 찾음 */
 	void FindTargets(OUT TArray<AActor*>& OutTargetingActors) const;
 
-	/** 최종 LockOn 시킬 대상을 찾음 */
+	/* 최종 LockOn 시킬 대상을 찾음 */
 	AActor* FindClosestTarget(TArray<AActor*>& InTargets, ESwitchingDirection InDirection = ESwitchingDirection::None) const;
 
-	/** 캐릭터가 카메라(ControlRotation)의 회전에 동기화 되도록 설정 */
+	/* 캐릭터가 카메라(ControlRotation)의 회전에 동기화 되도록 설정 */
 	void OrientCamera() const;
 
-	/** 캐릭터가 이동 방향으로 회전하도록 설정 */
+	/* 캐릭터가 이동 방향으로 회전하도록 설정 */
 	void OrientMovement() const;
 
-	/** LockedOn 상태에서 카메라 회전 제어 */
+	/* LockedOn 상태에서 카메라 회전 제어 */
 	void FaceLockOnActor() const;
 
-	/** LockOn */
+	/* LockOn */
 	void LockOnTarget();
 
-	/** LockOn 중지 */
+	/* LockOn 중지 */
 	void StopLockOn();
 };

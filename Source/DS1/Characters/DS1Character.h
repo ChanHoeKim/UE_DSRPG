@@ -103,23 +103,23 @@ private:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
 	UInputAction* EnterAction;
 private:
-	/** 캐릭터의 각종 스탯 관리 */
+	/* 캐릭터의 각종 스탯 관리 */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
 	UDS1AttributeComponent* AttributeComponent;
 
-	/** 캐릭터의 상태 관리 */
+	/* 캐릭터의 상태 관리 */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
 	UDS1StateComponent* StateComponent;
 
-	/** 무기, 전투 관리 */
+	/* 무기, 전투 관리 */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
 	UDS1CombatComponent* CombatComponent;
 
-	/** LockedOn Targeting */
+	/* LockedOn Targeting */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
 	UDS1TargetingComponent* TargetingComponent;
 
-	/** 포션 인벤토리 */
+	/* 포션 인벤토리 */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
 	UDS1PotionInventoryComponent* PotionInventoryComponent;
 
@@ -201,10 +201,10 @@ protected:
 	FTimerHandle ComboResetTimerHandle;
 
 protected:
-	/** 적과 대치중인 방향인지? */
+	/* 적과 대치중인 방향인지? */
 	bool bFacingEnemy = false;
 
-	/** 무적프레임 활성화 여부 */
+	/* 무적프레임 활성화 여부 */
 	bool bEnabledInvincibilityFrames = false;
 
 // Montage Section
@@ -246,7 +246,7 @@ public:
 	void NockDown(const AActor* InInstigator);
 	
 protected:
-	/** 캐릭터가 이동중인지 체크 */
+	/* 캐릭터가 이동중인지 체크 */
 	bool IsMoving() const;
 	bool CanToggleCombat() const;
 	FORCEINLINE bool IsSprinting() const { return bSprinting; }

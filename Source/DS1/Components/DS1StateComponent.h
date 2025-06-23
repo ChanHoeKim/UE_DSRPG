@@ -16,11 +16,11 @@ class DS1_API UDS1StateComponent : public UActorComponent
 
 protected:
 
-	/** 이동키 입력 상태 관리 */
+	/* 이동키 입력 상태 관리 */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="State")
 	bool bMovementInputEnabled = true;
 
-	/** 캐릭터의 현재 상태 */
+	/* 캐릭터의 현재 상태 */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="State")
 	FGameplayTag CurrentState;
 
@@ -35,10 +35,10 @@ public:
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
 public:
-	/** 이동 입력이 활성화 상태인지? */
+	/* 이동 입력이 활성화 상태인지? */
 	FORCEINLINE bool MovementInputEnabled() const { return bMovementInputEnabled; };
 
-	/** 이동 입력 토글 */
+	/* 이동 입력 토글 */
 	void ToggleMovementInput(bool bEnabled, float Duration = 0.f);
 
 protected:
@@ -57,10 +57,10 @@ public:
 	};
 	FORCEINLINE FGameplayTag GetCurrentState() const { return CurrentState; };
 
-	/** 현재 상태 초기화 */
+	/* 현재 상태 초기화 */
 	void ClearState();
 
-	/** 현재 State가 TagsToCheck의 어떤것과 같은지 체크 [OR] */
+	/* 현재 State가 TagsToCheck의 어떤것과 같은지 체크 [OR] */
 	bool IsCurrentStateEqualToAny(const FGameplayTagContainer& TagsToCheck) const;
 
 

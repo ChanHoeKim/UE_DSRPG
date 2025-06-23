@@ -34,7 +34,7 @@ void ADS1EnemyBoss::Tick(float DeltaSeconds)
 {
 	Super::Tick(DeltaSeconds);
 
-	GEngine->AddOnScreenDebugMessage(1, 1.5f, FColor::Cyan, FString::Printf(TEXT("%f"), AttributeComponent->GetBaseStamina()));
+	//GEngine->AddOnScreenDebugMessage(1, 1.5f, FColor::Cyan, FString::Printf(TEXT("%f"), AttributeComponent->GetBaseStamina()));
 }
 
 void ADS1EnemyBoss::BeginPlay()

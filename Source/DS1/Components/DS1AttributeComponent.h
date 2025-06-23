@@ -15,10 +15,10 @@ class DS1_API UDS1AttributeComponent : public UActorComponent
 {
 	GENERATED_BODY()
 public:
-	/** 스탯 변경 Delegate */
+	/* 스탯 변경 Delegate */
 	FDelegateOnAttributeChanged OnAttributeChanged;
 
-	/** 죽음을 알리는 Delegate */
+	/* 죽음을 알리는 Delegate */
 	FOnDeath OnDeath;
 
 protected:
@@ -41,7 +41,7 @@ protected:
 	UPROPERTY()
 	float DefenseStat = 0.f;
 
-	/** 스태미나 재충전 타이머 핸들 */
+	/* 스태미나 재충전 타이머 핸들 */
 	FTimerHandle RecoveryStaminaTimerHandle;
 
 	FTimerHandle HitImpactTimerHandle;
@@ -71,7 +71,7 @@ public:
 		DefenseStat = DefenseStat - DefenseAmount;
 	}
 
-	/** 스테미나 비율 계산 */
+	/* 스테미나 비율 계산 */
 	FORCEINLINE float GetStaminaRatio() const { return BaseStamina / MaxStamina; };
 	FORCEINLINE float GetHealthRatio() const { return BaseHealth / MaxHealth; };
 
@@ -79,21 +79,21 @@ public:
 
 	FORCEINLINE void SetBaseStamina(float InBaseStamina) {BaseStamina = InBaseStamina;}
 	
-	/** 스테미너가 충분한지 체크 */
+	/* 스테미너가 충분한지 체크 */
 	bool CheckHasEnoughStamina(float StaminaCost) const;
 
-	/** 스테미너 차감 */
+	/* 스테미너 차감 */
 	void DecreaseStamina(float StaminaCost);
 
-	/** 스테미너 재충전/중지 토글 */
+	/* 스테미너 재충전/중지 토글 */
 	void ToggleRecoveryStamina(bool bEnabled, float StartDelay = 2.f);
 
-	/** 스텟 변경을 통지하는 Broadcast Function */
+	/* 스텟 변경을 통지하는 Broadcast Function */
 	void BroadcastAttributeChanged(EDS1AttributeType InAttributeType) const;
 
 	void TakeDamageAmount(float DamageAmount);
 
-	/** 체력 회복 */
+	/* 체력 회복 */
 	void HealPlayer(float HealAmount);
 
 
@@ -115,7 +115,7 @@ public:
 	// UCameraShakeBase* HitCameraShake;
 	
 private:
-	/** 스태미나 재충전 처리 핸들링 함수 */
+	/* 스태미나 재충전 처리 핸들링 함수 */
 	void RecoveryStaminaHandler();
 		
 };
